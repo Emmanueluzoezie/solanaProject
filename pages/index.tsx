@@ -124,13 +124,14 @@ export default function Home() {
       </Head>
      <div>
         <div className='h-screen max-w-[500px] mx-auto'>
-          {isUserLogin ?
+          {/* {isUserLogin ?
               <div>
                 <HomeComponent />
               </div>
               :
-            <SignUpComponent />
-            }
+              <SignUpComponent />
+            } */}
+            <HomeComponent />
         </div>
      </div>
     </>

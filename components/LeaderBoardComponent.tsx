@@ -9,6 +9,7 @@ import LoadingAppComponent from './LoadingAppComponent';
 import { selectAppTheme } from '../slice/AppSlices';
 import { appColor } from './AppColor';
 import { FaSortDown } from 'react-icons/fa';
+import Image from 'next/image';
 
 const LeaderBoardComponent = () => {
     const [userRank, setUserRank] = useState(0);
@@ -65,7 +66,7 @@ const LeaderBoardComponent = () => {
                     <div className="flex-row justify-center items-end px-6 pb-2">
                         <div className="flex-1 justify-center items-center">
                             <div className={`rounded-full p-2 m-1 relative bg-${appColor.secondaryColor}`}>
-                                <img src={Top20Leader[1]?.image} alt={Top20Leader[1]?.full_name} className="w-[52px] h-[52px] rounded-full" />
+                                <Image src={Top20Leader[1]?.image} alt={Top20Leader[1]?.full_name} className="w-[52px] h-[52px] rounded-full"/>
                                 <div className={`absolute bottom-[-3] p-1 left-[30%] rounded-full w-5 items-center justify-center bg-${appColor.primaryDarkColor}`}>
                                     <p className="font-bold text-black" style={{ fontFamily: 'Lato-Bold' }}>2</p>
                                 </div>
@@ -78,7 +79,7 @@ const LeaderBoardComponent = () => {
                         </div>
                         <div className="flex-1 justify-center items-center">
                             <div className={`rounded-full p-2 m-1 relative bg-${appColor.primaryDarkColor}`}>
-                                <img src={Top20Leader[0]?.image} alt={Top20Leader[0]?.full_name} className="w-[75px] h-[75px] rounded-full" />
+                                <Image src={Top20Leader[0]?.image} alt={Top20Leader[0]?.full_name} className="w-[75px] h-[75px] rounded-full" />
                                 <div className={`absolute bottom-[-3] bg-${appColor.secondaryColor} left-[40%] rounded-full w-6 items-center justify-center h-6`}>
                                     <p className="font-bold text-white" style={{ fontFamily: 'Lato-Bold' }}>1</p>
                                 </div>
@@ -91,7 +92,7 @@ const LeaderBoardComponent = () => {
                         </div>
                         <div className="flex-1 justify-center items-center">
                             <div className={`rounded-full p-2 m-1 relative bg-${appColor.ternaryColor}`}>
-                                <img src={Top20Leader[2]?.image} alt={Top20Leader[2]?.full_name} className="w-[42px] h-[42px] rounded-full" />
+                                <Image src={Top20Leader[2]?.image} alt={Top20Leader[2]?.full_name} className="w-[42px] h-[42px] rounded-full" />
                                 <div className={`absolute bottom-[-2] left-[25%] rounded-full w-4 items-center justify-center h-4 bg-${appColor.primaryColor}`}>
                                     <p className="font-bold text-white text-[12px]" style={{ fontFamily: 'Lato-Bold' }}>3</p>
                                 </div>
@@ -115,7 +116,7 @@ const LeaderBoardComponent = () => {
                             <p className={`pl-4 font-semibold ${color}`} style={{ fontFamily: 'Lato-Bold' }}>Your rank</p>
                             <div className="flex-row items-center px-2">
                                 <p style={{ color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>{userRank}</p>
-                                <img src={userDetails?.image} alt={userDetails?.full_name} className="w-10 h-10 mx-3 rounded-full" />
+                                <Image src={userDetails?.image} alt={userDetails?.full_name} className="w-10 h-10 mx-3 rounded-full" />
                                 <div className="flex-1">
                                     <p className={`font-semibold pb-1 text-[16px] ${color}`} style={{ fontFamily: 'Lato-Bold' }}>{userDetails?.full_name}</p>
                                     <p className="text-[13px]" style={{ color: "black", fontFamily: 'Lato-Regular' }}>Over all Quiz</p>
@@ -133,7 +134,7 @@ const LeaderBoardComponent = () => {
                                 <div className={`p-2 rounded-md my-2 ${item?.full_name === userDetails?.full_name && "hidden"}`} style={{ backgroundColor: containerColor }}>
                                     <div className="flex-row items-center px-2">
                                         <p style={{ color, fontFamily: 'Lato-Bold' }}>{index + 1}</p>
-                                        <img src={item?.image} alt={item?.full_name} className="w-10 h-10 mx-3 rounded-full" />
+                                        <Image src={item?.image} alt={item?.full_name} className="w-10 h-10 mx-3 rounded-full" />
                                         <div className="flex-1">
                                             <p className={`font-semibold pb-1 text-[16px] ${color}`} style={{ fontFamily: 'Lato-Bold' }}>{item?.full_name}</p>
                                         </div>

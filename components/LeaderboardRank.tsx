@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/client';
 import { GET_ALL_USER } from '../graphql/queries';
 import { selectUserInfo, selectUserRank, setUserRank } from '../slice/userSlice';
 import { FaCaretDown } from 'react-icons/fa';
+import Image from 'next/image';
 
 const LeaderBoardRank = () => {
     const [userDetails, setUserDetails] = useState(null);
@@ -79,7 +80,7 @@ const LeaderBoardRank = () => {
                         </p>
                         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
                             <p style={{ color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>{userRank}</p>
-                            <img src={userDetails?.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.5rem 0.75rem', borderRadius: '50%' }} />
+                            <Image src={userDetails?.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.5rem 0.75rem', borderRadius: '50%' }} alt="" />
                             <div style={{ flex: 1 }}>
                                 <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>
                                     {userDetails?.full_name}
@@ -89,7 +90,7 @@ const LeaderBoardRank = () => {
                                 </p>
                             </div>
                             <button style={{ width: '1.125rem', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0.125rem', height: '1.125rem', backgroundColor: 'white' }}>
-                                <AntDesign name="caretdown" size={12} color={primary} />
+                                {/* <AntDesign name="caretdown" size={12} color={primary} /> */}
                             </button>
                         </div>
                     </div>
@@ -102,7 +103,7 @@ const LeaderBoardRank = () => {
                             <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: containerColor }} key={item.id}>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
                                     <p style={{ color, fontFamily: 'Lato-Bold' }}>{index + 1}</p>
-                                    <img src={item.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.75rem', borderRadius: '50%' }} />
+                                    <Image src={item.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.75rem', borderRadius: '50%' }} />
                                     <div style={{ flex: 1 }}>
                                         <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color, fontFamily: 'Lato-Bold' }}>
                                             {item.full_name}
