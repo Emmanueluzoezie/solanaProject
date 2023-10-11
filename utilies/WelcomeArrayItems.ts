@@ -59,10 +59,10 @@ yesterday.setDate(today.getDate() - 1); // Get yesterday's date
 const dayBeforeYesterday = new Date(today);
 dayBeforeYesterday.setDate(today.getDate() - 2); // Get the date from two days ago
 
-const formatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
-const formattedToday = today.toLocaleDateString(undefined, formatOptions);
-const formattedYesterday = yesterday.toLocaleDateString(undefined, formatOptions);
-const formattedDayBeforeYesterday = dayBeforeYesterday.toLocaleDateString(undefined, formatOptions);
+// const formatOptions = { year: 'numeric', month: '2-digit', day: '2-digit' };
+// const formattedToday = today.toLocaleDateString(undefined, formatOptions);
+// const formattedYesterday = yesterday.toLocaleDateString(undefined, formatOptions);
+// const formattedDayBeforeYesterday = dayBeforeYesterday.toLocaleDateString(undefined, formatOptions);
 
 export const history = [
     // {
