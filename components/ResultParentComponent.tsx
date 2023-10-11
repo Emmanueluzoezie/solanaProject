@@ -12,7 +12,7 @@ import { appColor } from './AppColor';
 import { useMutation, useQuery } from '@apollo/client';
 import ResultComponent from './quiz/ResultComponent';
 
-const ResultParentComponent = ({ questions, questionType }) => {
+const ResultParentComponent = ({ questions, questionType }: any) => {
     const [updatingPoint, setUpdatingPoint] = useState(false);
     const getUserResult = useSelector(selectAnswerQuestions);
     const appTheme = useSelector(selectAppTheme);
