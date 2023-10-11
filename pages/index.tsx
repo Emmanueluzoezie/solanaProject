@@ -13,7 +13,7 @@ import { selectIsUserLogin, setIsUserLogin } from '../slice/AppSlices';
 
 const inter = Inter({ subsets: ['latin'] })
 
-const clientId = process.env.WEB3AUTH_CLIENT_SECRET_KEY
+const clientId = process.env.NEXT_PUBLIC_SWEB3AUTH_CLIENT_ID
 
 export default function Home() {
   const provider = useSelector(selectProvider)
@@ -21,8 +21,6 @@ export default function Home() {
   const isUserLogin = useSelector(selectIsUserLogin)
   const dispatch = useDispatch()
   
-  console.log(process.env.WEB3AUTH_CLIENT_SECRET_KEY)
-
   // useEffect(() => {
   //   const init = async () => {
   //     try {
@@ -79,7 +77,7 @@ export default function Home() {
         };
         // eslint-disable-next-line @typescript-eslint/no-shadow
         const web3auth = new Web3AuthNoModal({
-          clientId,
+          clientId: `${clientId}`,
           chainConfig,
           web3AuthNetwork: "sapphire_mainnet",
         });

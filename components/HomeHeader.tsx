@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_USER, ADD_USER_HISTORY } from '../graphql/mutations';
 import { GET_ALL_USER, GET_USER_BY_EMAIL } from '../graphql/queries';
 import { selectAppTheme } from '../slice/AppSlices';
-import { selectUserInfo, setUserId } from '../slice/userSlice';
+import { selectUserInfo, setUserId, setUserInfo } from '../slice/userSlice';
 import { appColor } from './AppColor';
 
 const HomeHeader = () => {
@@ -120,6 +120,7 @@ const HomeHeader = () => {
     useEffect(() => {
         if (userData) {
             dispatch(setUserId(userInfo?.id));
+            dispatch(setUserInfo(userInfo))
         }
     }, [userData])
 

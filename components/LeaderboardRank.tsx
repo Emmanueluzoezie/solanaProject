@@ -9,7 +9,7 @@ import { FaCaretDown } from 'react-icons/fa';
 import Image from 'next/image';
 
 const LeaderBoardRank = () => {
-    const [userDetails, setUserDetails] = useState(null);
+    const [userDetails, setUserDetails] = useState<any>();
     const appTheme = useSelector(selectAppTheme);
     const userRank = useSelector(selectUserRank); // Update this line based on your project setup
     const dispatch = useDispatch();
@@ -30,17 +30,25 @@ const LeaderBoardRank = () => {
     const TopFiveLeader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(0, 5);
 
     useEffect(() => {
-        if (data) {
+        if (data && userInfo) {
             const sortedUsers = userInfo?.sort((a:any, b:any) => b.coins - a.coins);
-            const currentUserIndex = sortedUsers?.findIndex((user:any) => user.full_name === getUserInfo.name);
+            const currentUserIndex = sortedUsers?.findIndex((user: any) => user.full_name === getUserInfo.full_name);
+
+            console.log(currentUserIndex)
 
             if (currentUserIndex !== -1) {
                 const currentUser = sortedUsers[currentUserIndex];
                 setUserDetails(currentUser);
+                console.log(currentUser)
                 dispatch(setUserRank(currentUserIndex + 1));
             }
         }
+        console.log(getUserInfo)
     }, []);
+
+    if(userDetails){
+        console.log(userDetails)
+    }
 
     return (
         <div style={{ marginTop: '1rem' }}>
@@ -74,26 +82,27 @@ const LeaderBoardRank = () => {
                 </div>
             ) : (
                 <div>
-                    <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: appColor.primaryDarkColor }}>
-                        <p style={{ paddingLeft: '1rem', fontWeight: 'bold', fontFamily: 'Lato-Bold' }}>
-                            Your rank
-                        </p>
-                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
-                            <p style={{ color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>{userRank}</p>
-                            <Image src={userDetails?.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.5rem 0.75rem', borderRadius: '50%' }} alt="" />
-                            <div style={{ flex: 1 }}>
-                                <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>
-                                    {userDetails?.full_name}
-                                </p>
-                                <p style={{ fontSize: '0.8125rem', color: "black", fontFamily: 'Lato-Regular' }}>
-                                    Over all Quiz
-                                </p>
-                            </div>
-                            <button style={{ width: '1.125rem', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0.125rem', height: '1.125rem', backgroundColor: 'white' }}>
-                                {/* <AntDesign name="caretdown" size={12} color={primary} /> */}
-                            </button>
-                        </div>
-                    </div>
+                    {userDetails &&
+                                <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: appColor.primaryDarkColor }}>
+                                    <p style={{ paddingLeft: '1rem', fontWeight: 'bold', fontFamily: 'Lato-Bold' }}>
+                                        Your rank
+                                    </p>
+                                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
+                                        <p style={{ color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>{userRank}</p>
+                                        <Image src={userDetails.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.5rem 0.75rem', borderRadius: '50%' }} alt="" />
+                                        <div style={{ flex: 1 }}>
+                                            <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>
+                                                {userDetails?.full_name}
+                                            </p>
+                                            <p style={{ fontSize: '0.8125rem', color: "black", fontFamily: 'Lato-Regular' }}>
+                                                Over all Quiz
+                                            </p>
+                                        </div>
+                                        <button style={{ width: '1.125rem', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0.125rem', height: '1.125rem', backgroundColor: 'white' }}>
+                                            {/* <AntDesign name="caretdown" size={12} color={primary} /> */}
+                                        </button>
+                                    </div>
+                                </div>}
 
                     {TopFiveLeader.map((item:any, index:any) => {
                         if (item.name === userDetails?.name) {
@@ -103,7 +112,7 @@ const LeaderBoardRank = () => {
                             <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: containerColor }} key={item.id}>
                                 <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
                                     <p style={{ color, fontFamily: 'Lato-Bold' }}>{index + 1}</p>
-                                    <Image src={item.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.75rem', borderRadius: '50%' }} />
+                                    <Image src={item.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.75rem', borderRadius: '50%' }} alt=""/>
                                     <div style={{ flex: 1 }}>
                                         <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color, fontFamily: 'Lato-Bold' }}>
                                             {item.full_name}
