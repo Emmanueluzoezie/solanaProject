@@ -7,6 +7,7 @@ import { GET_ALL_USER } from '../graphql/queries';
 import { selectUserInfo, selectUserRank, setUserRank } from '../slice/userSlice';
 import { FaCaretDown } from 'react-icons/fa';
 import Image from 'next/image';
+import { MdArrowDropDown, MdOutlineArrowDropDown } from 'react-icons/md';
 
 const LeaderBoardRank = () => {
     const [userDetails, setUserDetails] = useState<any>();
@@ -32,7 +33,7 @@ const LeaderBoardRank = () => {
     useEffect(() => {
         if (data && userInfo) {
             const sortedUsers = userInfo?.sort((a:any, b:any) => b.coins - a.coins);
-            const currentUserIndex = sortedUsers?.findIndex((user: any) => user.full_name === getUserInfo.full_name);
+            const currentUserIndex = sortedUsers?.findIndex((user: any) => user.full_name === getUserInfo.name);
 
             console.log(currentUserIndex)
 
@@ -43,7 +44,6 @@ const LeaderBoardRank = () => {
                 dispatch(setUserRank(currentUserIndex + 1));
             }
         }
-        console.log(getUserInfo)
     }, []);
 
     if(userDetails){
@@ -53,74 +53,65 @@ const LeaderBoardRank = () => {
     return (
         <div style={{ marginTop: '1rem' }}>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem' }}>
-                <p style={{ fontWeight: 'bold', fontSize: '1rem', color, fontFamily: 'Lato-Bold' }}>
+                <p className='text-[18px] font-semibold' style={{ color, }}>
                     Top 5 LeaderBoard
                 </p>
-                <button>
-                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-                        <p style={{ padding: '0.25rem 0.5rem', fontWeight: 'bold', color, fontFamily: 'Lato-Bold' }}>
-                            See all
-                        </p>
-                    
-                    </div>
+                <button className='flex items-center'>
+                    <p className='text-[14px] font-semibold' style={{ color, }}>See all</p>
+                    <MdOutlineArrowDropDown className='text-[30px]'/>
                 </button>
             </div>
             {loading ? (
                 <div style={{ width: '100%', height: '70px', borderRadius: '4px', backgroundColor: containerColor }} />
             ) : error ? (
                 <div className=''>
-                    <p style={{ fontSize: '1rem', color, fontFamily: 'Lato-Bold' }}>
+                    <p style={{ color, }}>
                         Oops! An error occurred on our end. Check your internet connection and try again.
                     </p>
                     <div className='flex justify-center'>
                         <button className='p-1 px-4 rounded-md mt-3' style={{ backgroundColor: primary }}>
-                            <p style={{ fontWeight: 'bold', fontSize: '1rem', color: appTheme === "dark" ? appColor.lightTextColor : appColor.darkTextColor, fontFamily: 'Lato-Bold' }}>
+                            <p style={{ color: appTheme === "dark" ? appColor.lightTextColor : appColor.darkTextColor, }}>
                                 Click to reload
                             </p>
                         </button>
                     </div>
                 </div>
             ) : (
-                <div>
+                <div className='pb-8'>
                     {userDetails &&
                                 <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: appColor.primaryDarkColor }}>
-                                    <p style={{ paddingLeft: '1rem', fontWeight: 'bold', fontFamily: 'Lato-Bold' }}>
+                                    <p className='font-semibold pl-3'>
                                         Your rank
                                     </p>
-                                    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
-                                        <p style={{ color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>{userRank}</p>
-                                        <Image src={userDetails.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.5rem 0.75rem', borderRadius: '50%' }} alt="" />
-                                        <div style={{ flex: 1 }}>
-                                            <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>
+                                    <div className='flex items-center space-x-3'>
+                                        <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{userRank}</h1>
+                                        <Image src={userDetails.image} alt="" width={100} height={100} className="w-[45px] h-[45px] rounded-full" />
+                                        <div className='flex-1'>
+                                            <h1  className='font-semibold text-[18px]' style={{ color: appColor.lightTextColor, }}>
                                                 {userDetails?.full_name}
-                                            </p>
-                                            <p style={{ fontSize: '0.8125rem', color: "black", fontFamily: 'Lato-Regular' }}>
-                                                Over all Quiz
-                                            </p>
+                                            </h1>
+                                            <h3 className='text-[14px] mt-[-4px]' style={{color: "black" }}> Over all Quiz</h3>
                                         </div>
-                                        <button style={{ width: '1.125rem', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0.125rem', height: '1.125rem', backgroundColor: 'white' }}>
-                                            {/* <AntDesign name="caretdown" size={12} color={primary} /> */}
-                                        </button>
+                                        <MdOutlineArrowDropDown className='text-[25px] rounded-md mt-[-16px]' style={{color: appColor.primaryColor, backgroundColor: "white"}}/>
                                     </div>
                                 </div>}
 
                     {TopFiveLeader.map((item:any, index:any) => {
-                        if (item.name === userDetails?.name) {
-                            return null;
-                        }
+                        // if (item.name === userDetails?.name) {
+                        //     return null;
+                        // }
                         return (
-                            <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: containerColor }} key={item.id}>
-                                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '0.25rem' }}>
-                                    <p style={{ color, fontFamily: 'Lato-Bold' }}>{index + 1}</p>
-                                    <Image src={item.image} style={{ width: '2.5rem', height: '2.5rem', margin: '0.75rem', borderRadius: '50%' }} alt=""/>
-                                    <div style={{ flex: 1 }}>
-                                        <p style={{ fontWeight: 'bold', paddingBottom: '0.125rem', fontSize: '1rem', color, fontFamily: 'Lato-Bold' }}>
-                                            {item.full_name}
-                                        </p>
+                            <div className='p-3 rounded-md my-2' style={{ backgroundColor: containerColor }} key={item.id}>
+                                <div className='flex items-center space-x-3'>
+                                    <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{userRank}</h1>
+                                    <Image src={userDetails.image} alt="" width={100} height={100} className="w-[45px] h-[45px] rounded-full" />
+                                    <div className='flex-1'>
+                                        <h1 className='font-semibold text-[18px]' style={{ color: appColor.lightTextColor, }}>
+                                            {userDetails?.full_name}
+                                        </h1>
+                                        <h3 className='text-[14px] mt-[-4px]' style={{ color: "black" }}> Over all Quiz</h3>
                                     </div>
-                                    <button style={{ width: '1.125rem', display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '0.125rem', height: '1.125rem', backgroundColor: 'white' }}>
-                                        <FaCaretDown className=''/>
-                                    </button>
+                                    <MdOutlineArrowDropDown className='text-[25px] rounded-md mt-[-16px]' style={{ color: appColor.primaryColor, backgroundColor: "white" }} />
                                 </div>
                             </div>
                         );

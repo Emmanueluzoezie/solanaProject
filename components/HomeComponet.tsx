@@ -1,18 +1,21 @@
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectAppTheme } from '../slice/AppSlices';
+import { selectAppTheme, selectIsHomeLoading, selectIsUserLogin, setIsHomeLoading } from '../slice/AppSlices';
 import { selectProvider, selectWeb3Auth, setAddress, setProvider, setTokenId, setUserInfo, setWeb3Auth } from '../slice/userSlice';
 import RPC from "../solanaRPC";
 import { appColor } from './AppColor';
 import BottomNavigation from './BottomNavigation';
 import HomeHeader from './HomeHeader';
 import LeaderBoardRank from './LeaderboardRank';
+import LoadingAppComponent from './LoadingAppComponent';
 import QuizChallenge from './QuizChallenge';
 import QuizReminder from './QuizReminder';
 
 const HomeComponent = () => {
     const provider = useSelector(selectProvider)
+    const isAppLoading = useSelector(selectIsHomeLoading)
+    const isUserLogin = useSelector(selectIsUserLogin)
     const web3auth = useSelector(selectWeb3Auth)
     const dispatch = useDispatch()
     const appTheme = useSelector(selectAppTheme)
@@ -39,7 +42,6 @@ const HomeComponent = () => {
             return;
         }
         const idToken = await web3auth.authenticateUser();
-        console.log("idToken: ", idToken);
         dispatch(setTokenId(idToken));
     };
 
@@ -50,7 +52,7 @@ const HomeComponent = () => {
         }
         const user = await web3auth.getUserInfo();
         dispatch(setUserInfo(user))
-        console.log("user: ", user);
+        console.log("want to know", user)
     };
     const getAccounts = async () => {
         if (!provider) {
@@ -60,15 +62,21 @@ const HomeComponent = () => {
         const rpc = new RPC(provider);
         const address = await rpc.getAccounts();
         dispatch(setAddress(address))
-        console.log("address: ", address);
     };
 
     useEffect(() => {
-        if (provider) {
+
+        const loaded = async() => {
+            dispatch(setIsHomeLoading(true))
             authenticateUser()
             getUserInfo()
             getAccounts()
+            setTimeout(() => {
+                dispatch(setIsHomeLoading(false))
+            }, 3000)
         }
+
+        loaded()
     }, [provider])
 
     const containerColor = appTheme === "dark" ? appColor.darkContainerBackground : appColor.lightContainerBackground
@@ -80,19 +88,25 @@ const HomeComponent = () => {
     const buttonColor = appTheme === "dark" ? appColor.primaryColor : appColor.primaryDarkColor
 
     return (
-        <div style={{ backgroundColor: bgColor, }} className="h-full">
-            <div className='h-[92%] px-4'>
-                <HomeHeader />
-                <QuizReminder />
-                <QuizChallenge />
-                <LeaderBoardRank />
-                <button className='p-1 px-4 rounded-md mt-3' style={{ backgroundColor: appColor.primaryColor }} onClick={logout}>
-                    <p style={{ fontWeight: 'bold', fontSize: '1rem', color: appTheme === "dark" ? appColor.lightTextColor : appColor.darkTextColor, fontFamily: 'Lato-Bold' }}>
-                        logout
-                    </p>
-                </button>
+        <div style={{ backgroundColor: bgColor, }} className="h-screen">
+            {isAppLoading?
+            <LoadingAppComponent />
+            :
+            <div className="h-screen">
+                <div className='h-[92%] px-4'>
+                    <HomeHeader />
+                    <QuizReminder />
+                    <QuizChallenge />
+                    <LeaderBoardRank />
+                        <button className='p-1 px-4 rounded-md mt-3' style={{ backgroundColor: appColor.primaryColor }} onClick={getAccounts}>
+                        <p style={{ fontWeight: 'bold', fontSize: '1rem', color: appTheme === "dark" ? appColor.lightTextColor : appColor.darkTextColor, fontFamily: 'Lato-Bold' }}>
+                            logout
+                        </p>
+                    </button>
+                </div>
+                <BottomNavigation />
             </div>
-            <BottomNavigation />
+            }
         </div>
     )
 }

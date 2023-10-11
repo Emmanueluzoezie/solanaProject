@@ -20,48 +20,6 @@ export default function Home() {
   const web3auth = useSelector(selectWeb3Auth)
   const isUserLogin = useSelector(selectIsUserLogin)
   const dispatch = useDispatch()
-  
-  // useEffect(() => {
-  //   const init = async () => {
-  //     try {
-
-  //       const chainConfig: CustomChainConfig = {
-  //         chainNamespace: "solana",
-  //         chainId: "0x1",
-  //         rpcTarget: "https://rpc.ankr.com/solana",
-  //         displayName: "Solana Mainnet",
-  //         blockExplorer: "https://explorer.solana.com",
-  //         ticker: "SOL",
-  //         tickerName: "Solana",
-  //       };
-  //       // eslint-disable-next-line @typescript-eslint/no-shadow
-  //       const web3auth = new Web3AuthNoModal({
-  //         clientId: "BHFzbs-_k9LdPg1C9z1eLVDRsODED_wvyo42PAZytk8uEjZ6UtYFmX1O37AVFCzCN1QhPeSCREsL-2C1nDLbssc", // Get your Client ID from the Web3Auth Dashboard
-  //         web3AuthNetwork: "sapphire_mainnet", // Web3Auth Network
-  //         chainConfig
-  //       });
-
-  //       const privateKeyProvider = new SolanaPrivateKeyProvider({ config: { chainConfig } });
-
-  //       const openloginAdapter = new OpenloginAdapter({
-  //         privateKeyProvider,
-  //       });
-  //       web3auth.configureAdapter(openloginAdapter);
-  //       await web3auth.init();
-
-  //       console.log(web3auth)
-  //       dispatch(setWeb3Auth(web3auth));
-  //       if (web3auth) {
-  //         dispatch(setProvider(web3auth.provider));
-  //       };
-
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   init();
-  // }, []);
 
   useEffect(() => {
     const init = async () => {
@@ -69,7 +27,7 @@ export default function Home() {
         const chainConfig = {
           chainNamespace: CHAIN_NAMESPACES.SOLANA,
           chainId: "0x1", // Please use 0x1 for Mainnet, 0x2 for Testnet, 0x3 for Devnet
-          rpcTarget: "https://rpc.ankr.com/solana",
+          rpcTarget: "https://solana-mainnet.g.alchemy.com/v2/demo",
           displayName: "Solana Mainnet",
           blockExplorer: "https://explorer.solana.com",
           ticker: "SOL",
@@ -96,6 +54,9 @@ export default function Home() {
         if (web3auth.connected){
           dispatch(setIsUserLogin(true))
         }
+        else{
+          dispatch(setIsUserLogin(false))
+        }
       } catch (error) {
         console.error(error);
       }
@@ -103,14 +64,6 @@ export default function Home() {
 
     init();
   }, []);
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function uiConsole(...args: any[]): void {
-    const el = document.querySelector("#console>p");
-    if (el) {
-      el.innerHTML = JSON.stringify(args || {}, null, 2);
-    }
-  }
 
   return (
     <>
@@ -129,7 +82,6 @@ export default function Home() {
               :
               <SignUpComponent />
             }
-            {/* <HomeComponent /> */}
         </div>
      </div>
     </>

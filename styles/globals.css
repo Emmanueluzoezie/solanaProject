@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+    .hide{
+      overflow-y: scroll;
+    }
+    .hide::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .hide {
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
+      }
+  }

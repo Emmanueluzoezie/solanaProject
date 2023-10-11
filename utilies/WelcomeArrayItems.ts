@@ -17,6 +17,12 @@ export const dailyTreat = [
     },
 ]
 
+export const treatTime =[
+    "Daily",
+    "weekly",
+    "monthly"
+]
+
 
 
 export const currencies = [
