@@ -102,7 +102,7 @@ function InvestmentCalculator() {
                                 <div className="flex-row">
                                     <p className="font-semibold pr-4 capitalize">{depositSchedule}</p>
                                 </div>
-                                <AntDesign name="caretdown" size={14} color={color} />
+                                {/* <AntDesign name="caretdown" size={14} color={color} /> */}
                             </div>
                         </button>
                         {openSchedule && (
@@ -115,7 +115,7 @@ function InvestmentCalculator() {
                             </div>
                         )}
                     </div>
-                    <div className="mt-6">
+                    {/* <div className="mt-6">
                         {amount && timeInYears && depositSchedule ? (
                             <button className="py-2 my-4 rounded-md" onClick={() => handleSubmit()}>
                                 <p className="text-center font-bold text-18px">Calculate</p>
@@ -128,7 +128,7 @@ function InvestmentCalculator() {
                         <button className="border-2 py-2 my-4 rounded-md" onClick={() => resetForm()}>
                             <p className="text-center font-bold text-18px">Reset</p>
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>
