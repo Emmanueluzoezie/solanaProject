@@ -24,6 +24,7 @@ const SingleQuizComponent = ({answerOne, answerTwo, answerThree, question, id,co
         dispatch(addAnsweredQuestions({
             question: question,
             correctAnswer: correctAnswer,
+            userAnswer: selectedAnswer,
             isCorrect: isCorrect,
             id: id,
         }));
@@ -31,55 +32,42 @@ const SingleQuizComponent = ({answerOne, answerTwo, answerThree, question, id,co
     };
 
     return (
-        <div className="flex-1 pt-80 relative">
+        <div className="flex-1 pt-[40px] h-[750px] relative">
             <div className="w-full px-4">
-                <h2 style={{ color, fontFamily: 'Lato-Bold' }}>{question}</h2>
-                <div className="mt-4">
-                    <div className={`my-2 flex-row items-center p-3 rounded-md ${selectedAnswer === answerOne ? `bg-${mainAppColor}` : ''}`}
+                <h2 className='font-semibold  text-[18px]' style={{ color }}>{question}</h2>
+                <div className="mt-[40px]">
+                    <div className={`my-2 cursor-pointer flex items-center p-3 rounded-md ${selectedAnswer === answerOne ? `bg-${mainAppColor}` : ''}`} style={{ backgroundColor: selectedAnswer === answerOne ? mainAppColor : "" }}
                         onClick={() => handleClick(answerOne)}
                     >
-                        <div className={`w-5 h-5 rounded-full ${selectedAnswer === answerOne ? 'border-4 border-bgColor' : `border-2 border-${mainAppColor}`}`} />
-                        <h2 style={{
-                            paddingLeft: '1rem',
-                            fontFamily: 'Lato-Bold',
-                            color: selectedAnswer === answerOne ? 'bgColor' : color,
-                            fontWeight: selectedAnswer === answerOne ? 700 : 'normal',
+                        <div className={`w-5 h-5 rounded-full`} style={{ borderWidth: selectedAnswer === answerOne ? "4px" : "" }} />
+                        <h2 className='pl-3' style={{
+                            color: selectedAnswer === answerOne ? bgColor : color,
+                            fontWeight: selectedAnswer === answerOne ? 600 : 'normal',
                         }}>{answerOne}</h2>
                     </div>
-                    <div className={`my-2 flex-row items-center p-3 rounded-md ${selectedAnswer === answerTwo ? `bg-${mainAppColor}` : ''}`}
+                    <div className={`my-2 cursor-pointer flex items-center p-3 rounded-md ${selectedAnswer === answerTwo ? `bg-${mainAppColor}` : ''}`} style={{ backgroundColor: selectedAnswer === answerTwo ? mainAppColor : ""}}
                         onClick={() => handleClick(answerTwo)}
                     >
-                        <div className={`w-5 h-5 rounded-full ${selectedAnswer === answerTwo ? 'border-4 border-bgColor' : `border-2 border-${mainAppColor}`}`} />
-                        <h2 style={{
-                            paddingLeft: '1rem',
-                            fontFamily: 'Lato-Bold',
-                            color: selectedAnswer === answerTwo ? 'bgColor' : color,
-                            fontWeight: selectedAnswer === answerTwo ? 700 : 'normal',
+                        <div className={`w-5 h-5 rounded-full`} style={{ borderWidth: selectedAnswer === answerTwo ? "4px": ""}}/>
+                        <h2 className='pl-3' style={{color: selectedAnswer === answerTwo ? bgColor : color,
+                            fontWeight: selectedAnswer === answerTwo ? 600 : 'normal',
                         }}>{answerTwo}</h2>
                     </div>
-                    <div className={`my-2 flex-row items-center p-3 rounded-md ${selectedAnswer === answerThree ? `bg-${mainAppColor}` : ''}`}
+                    <div className={`my-2 flex items-center cursor-pointer p-3 rounded-md ${selectedAnswer === answerThree ? `bg-${mainAppColor}` : ''}`} style={{ backgroundColor: selectedAnswer === answerThree ? mainAppColor : "" }}
                         onClick={() => handleClick(answerThree)}
                     >
-                        <div className={`w-5 h-5 rounded-full ${selectedAnswer === answerThree ? 'border-4 border-bgColor' : `border-2 border-${mainAppColor}`}`} />
-                        <h2 style={{
-                            paddingLeft: '1rem',
-                            fontFamily: 'Lato-Bold',
-                            color: selectedAnswer === answerThree ? 'bgColor' : color,
-                            fontWeight: selectedAnswer === answerThree ? 700 : 'normal',
+                        <div className={`w-5 h-5 rounded-full`} style={{ borderWidth: selectedAnswer === answerThree ? "4px" : "" }} />
+                        <h2 className='pl-3' style={{
+                            color: selectedAnswer === answerThree ? bgColor : color,
+                            fontWeight: selectedAnswer === answerThree ? 600 : 'normal',
                         }}>{answerThree}</h2>
                     </div>
                 </div>
             </div>
             {selectedAnswer &&
                 <div className="absolute bottom-20 px-4 w-full">
-                    <div className={`py-2 rounded-md bg-${mainAppColor}`} onClick={handleNextQuestion}>
-                        <h2 style={{
-                            fontFamily: 'Lato-Bold',
-                            color: appTheme === 'dark' ? appColor.lightTextColor : appColor.darkTextColor,
-                            textTransform: 'capitalize',
-                            fontWeight: 'bold',
-                        }}>Next</h2>
-                    </div>
+                    <button className={`py-2 font-bold rounded-md w-full`} style={{ backgroundColor: mainAppColor, color: appTheme === 'dark' ? appColor.lightTextColor : appColor.darkTextColor }} onClick={handleNextQuestion}>Next
+                    </button>
                 </div>
             }
         </div>

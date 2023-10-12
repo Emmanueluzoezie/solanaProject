@@ -98,11 +98,6 @@ const HomeComponent = () => {
                     <QuizReminder />
                     <QuizChallenge />
                     <LeaderBoardRank />
-                        <button className='p-1 px-4 rounded-md mt-3' style={{ backgroundColor: appColor.primaryColor }} onClick={getAccounts}>
-                        <p style={{ fontWeight: 'bold', fontSize: '1rem', color: appTheme === "dark" ? appColor.lightTextColor : appColor.darkTextColor, fontFamily: 'Lato-Bold' }}>
-                            logout
-                        </p>
-                    </button>
                 </div>
                 <BottomNavigation />
             </div>

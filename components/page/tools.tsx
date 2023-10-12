@@ -1,14 +1,16 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { appColor } from '../components/AppColor'
-import Articules from '../components/Articules'
-import BottomNavigation from '../components/BottomNavigation'
-import CalculatorsComponent from '../components/calculatorsComponen'
-import HeaderWithTwoItems from '../components/HeaderWithTwoItems'
-import PointConversion from '../components/PointConversion'
-import ToolsComponent from '../components/ToolsComponent'
-import { selectAppTheme } from '../slice/AppSlices'
-import { selectCurrentToolScreen } from '../slice/ScreenSlice'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectAppTheme } from '../../slice/AppSlices'
+import { selectCurrentToolScreen } from '../../slice/ScreenSlice'
+import { appColor } from '../AppColor'
+import Articules from '../Articules'
+import BottomNavigation from '../BottomNavigation'
+import CalculatorsComponent from '../calculatorsComponen'
+import HeaderWithTwoItems from '../HeaderWithTwoItems'
+import PointConversion from '../PointConversion'
+import ToolsComponent from '../ToolsComponent'
+
+const clientId = process.env.NEXT_PUBLIC_SWEB3AUTH_CLIENT_ID
 
 const Tools = () => {
   const appTheme = useSelector(selectAppTheme)
@@ -26,12 +28,13 @@ const Tools = () => {
 
   return (
     <div>
+      { }
       {currentToolScreen === "home_view" &&
-          <div className='h-screen' style={{ background: bgColor }}>
-            <HeaderWithTwoItems title="Tools" />
-            <ToolsComponent />
-            <BottomNavigation />
-          </div>
+        <div className='h-screen' style={{ background: bgColor }}>
+          <HeaderWithTwoItems title="Tools" />
+          <ToolsComponent />
+          <BottomNavigation />
+        </div>
       }
       {currentToolScreen === "calculators" &&
         <CalculatorsComponent />

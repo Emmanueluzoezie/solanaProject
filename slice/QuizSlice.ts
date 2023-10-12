@@ -5,6 +5,7 @@ interface AnsweredQuestion {
     question: string;
     correctAnswer: string;
     isCorrect: boolean;
+    userAnswer: string
     id: number| string
 }
 

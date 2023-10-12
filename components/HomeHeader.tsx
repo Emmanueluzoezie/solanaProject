@@ -13,14 +13,11 @@ import { appColor } from './AppColor';
 
 const HomeHeader = () => {
     const [historyAdded, setHistoryAdded] = useState(false);
-    const userDetails = useSelector(selectUserInfo)
     const userAddress = useSelector(selectAddress)
     const [copyMessage, setCopyMessage] = useState("")
     const appTheme = useSelector(selectAppTheme)
     const getUserInfo = useSelector(selectUserInfo)
     const dispatch = useDispatch()
-
-    console.log(userAddress)
 
     const [addUserToDatabase] = useMutation(ADD_USER, {
         refetchQueries: [GET_ALL_USER, "getUserList"]
@@ -30,13 +27,9 @@ const HomeHeader = () => {
     const { data, loading, error } = useQuery(GET_ALL_USER)
     const { data: userData, loading: userLoading, error: userError } = useQuery(GET_USER_BY_EMAIL, {
         variables: {
-            email: "emmanueluzoeziejobs@gmail.com"
+            email: getUserInfo.email
         }
     })
-
-    if (loading || userLoading) {
-        console.log("loading...")
-    }
 
     if (userError) {
         // console.log("errors:", error)   

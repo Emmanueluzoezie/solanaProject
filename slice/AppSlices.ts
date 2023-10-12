@@ -11,6 +11,8 @@ interface AppState {
     currentArticleScreen: string
     errorMessage: string;
     isHomeLoading:  boolean
+    appScreen: string
+    previousScreen: string
 }
 
 const initialState: AppState = {
@@ -21,7 +23,9 @@ const initialState: AppState = {
     openOtpScreen: false,
     currentArticleScreen: "latest_article",
     errorMessage: "",
-    isHomeLoading: false
+    isHomeLoading: false,
+    appScreen: "home",
+    previousScreen:  "home",
 }
 
 export const appSlice = createSlice({
@@ -52,10 +56,17 @@ export const appSlice = createSlice({
         setIsHomeLoading: (state, action: PayloadAction<boolean>) => {
             state.isHomeLoading = action.payload;
         },
+        setAppScreen: (state, action: PayloadAction<string>) => {
+            state.appScreen = action.payload;
+        },
+        setPreviousAppScreen: (state, action: PayloadAction<string>) => {
+            state.previousScreen = action.payload;
+        },
     }
 });
 
-export const { setIsUserLogin, setIsHomeLoading, setNewUser, setAppTheme, setCurrentScreen, setOpenOtpScreen, setCurrentArticleScreen, setErrorMessage } = appSlice.actions;
+export const { setIsUserLogin, setIsHomeLoading, setNewUser, setAppTheme, setCurrentScreen, setOpenOtpScreen, setCurrentArticleScreen, setErrorMessage, setAppScreen,
+setPreviousAppScreen } = appSlice.actions;
 
 export const selectIsUserLogin = (state: RootState) => state.app.isUserLogin;
 export const selectNewUser = (state: RootState) => state.app.newUser;
@@ -65,6 +76,8 @@ export const selectOpenOtpScreen = (state: RootState) => state.app.openOtpScreen
 export const selectCurrentArticleScreen = (state: RootState) => state.app.currentArticleScreen;
 export const selectErrorMessage = (state: RootState) => state.app.errorMessage;
 export const selectIsHomeLoading = (state: RootState) => state.app.isHomeLoading;
+export const selectAppScreen = (state: RootState) => state.app.appScreen;
+export const selectPreviousAppScreen = (state: RootState) => state.app.previousScreen;
 
 export default appSlice.reducer;
 

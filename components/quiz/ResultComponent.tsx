@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectAppTheme } from "../../slice/AppSlices"
 import { appColor } from "../AppColor"
+import { FaCheck } from "react-icons/fa"
 
-const ResultComponent = ({ question, correctAnswer }: any) => {
+const ResultComponent = ({ question, correctAnswer, userAnswers }: any) => {
     const appTheme = useSelector(selectAppTheme)
     const dispatch = useDispatch()
 
@@ -11,12 +12,14 @@ const ResultComponent = ({ question, correctAnswer }: any) => {
     const color = appTheme === "dark" ? appColor.darkTextColor : appColor.lightTextColor
 
     return (
-        <div>
+        <div className="relative">
             <div className={`p-3`}>
+                <div className="absolute right-3 bottom-4 p-2">{userAnswers === correctAnswer ? <FaCheck style={{color:appColor.primaryColor}} className="text-[16px]"/> : <h2 className="font-extrabold text-red-600" >X</h2>}</div>
                 <div className="p-3 rounded-md"
                 style={{ backgroundColor: containerColor }}>
-                    <h2 className="text-[15px] font-semibold" style={{ color, fontFamily: 'Lato-Bold' }}>{question}</h2>
-                    <p className="text-[13px] pt-2" style={{ color, fontFamily: 'Lato-Bold' }}>{correctAnswer}</p>
+                    <h2 className="text-[17px] font-semibold" style={{ color }}>{question}</h2>
+                    <p className="text-[15px] pt-2" style={{ color,}}>{correctAnswer}</p>
+                    {}
                 </div>
             </div>
         </div>

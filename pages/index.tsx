@@ -10,6 +10,7 @@ import SignUpComponent from '../components/SignUpComponent';
 import { SolanaPrivateKeyProvider } from '@web3auth/solana-provider';
 import { OpenloginAdapter } from '@web3auth/openlogin-adapter';
 import { selectIsUserLogin, setIsUserLogin } from '../slice/AppSlices';
+import PageChecker from '../components/page/pageChecker';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -77,7 +78,7 @@ export default function Home() {
         <div className='h-screen max-w-[500px] mx-auto'>
           {isUserLogin ?
               <div>
-                <HomeComponent />
+                <PageChecker />
               </div>
               :
               <SignUpComponent />

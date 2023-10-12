@@ -36,7 +36,7 @@ const SettingComponent = () => {
     const userInfo = data?.getUserByEmail[0];
 
     return (
-        <div className="flex-1 pb-4">
+        <div className="h-sc pb-4">
             {loading ? (
                 <LoadingAppComponent />
             ) : error ? (

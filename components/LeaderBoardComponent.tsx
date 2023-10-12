@@ -21,6 +21,8 @@ const LeaderBoardComponent = () => {
 
     const userInfo = data?.getUserList;
 
+    console.log("data: ",data)
+
     const Top20Leader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(0, 20);
 
     useEffect(() => {
@@ -61,85 +63,92 @@ const LeaderBoardComponent = () => {
                     </button>
                 </div>
             ) : (
-                <div className="flex-1 pt-6">
-                    {/* Top 3 Leaders with highest coins */}
-                    <div className="flex-row justify-center items-end px-6 pb-2">
-                        <div className="flex-1 justify-center items-center">
-                            <div className={`rounded-full p-2 m-1 relative bg-${appColor.secondaryColor}`}>
-                                <Image src={Top20Leader[1]?.image} alt={Top20Leader[1]?.full_name} className="w-[52px] h-[52px] rounded-full"/>
-                                <div className={`absolute bottom-[-3] p-1 left-[30%] rounded-full w-5 items-center justify-center bg-${appColor.primaryDarkColor}`}>
-                                    <p className="font-bold text-black" style={{ fontFamily: 'Lato-Bold' }}>2</p>
+                <div className="">
+                    <div className="flex justify-center items-end px-6 pb-2">
+                        <div className="flex-1 flex flex-col items-center">
+                            <div className={`flex flex-col items-center rounded-full p-2 m-1 relative bg-${appColor.secondaryColor}`}>
+                               <div className='w-fit border-[10px] rounded-full' style={{borderColor: appColor.secondaryColor}}>
+                                     <Image src={Top20Leader[1]?.image} alt={Top20Leader[0]?.full_name} className="w-[75px] h-[75px] rounded-full" width={100} height={100} />
+                               </div>
+                                <div className="">
+                                    <div className='w-[16px] mt-[-8px] h-[16px] flex items-center  justify-center rounded-full ' style={{backgroundColor: appColor.ternaryColor}}>
+                                        <p className="font-semibold text-[12px] text-black" style={{ color: appColor.primaryColor }}>2</p>
+                                    </div>
                                 </div>
                             </div>
                             <div className="w-[100px]">
-                                <p className={`mt-4 truncate font-semibold text-[12px] text-center ${color}`} style={{ fontFamily: 'Lato-Bold' }}>
+                                <p className={` truncate font-semibold text-[14px] text-center`} style={{ color }}>
                                     {Top20Leader[1]?.full_name}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex-1 justify-center items-center">
-                            <div className={`rounded-full p-2 m-1 relative bg-${appColor.primaryDarkColor}`}>
-                                <Image src={Top20Leader[0]?.image} alt={Top20Leader[0]?.full_name} className="w-[75px] h-[75px] rounded-full" />
-                                <div className={`absolute bottom-[-3] bg-${appColor.secondaryColor} left-[40%] rounded-full w-6 items-center justify-center h-6`}>
-                                    <p className="font-bold text-white" style={{ fontFamily: 'Lato-Bold' }}>1</p>
+                        <div className="flex-1 flex flex-col items-center">
+                            <div className={`flex flex-col items-center rounded-full p-2 m-1 relative`}>
+                                <div className='w-fit border-[10px] rounded-full' style={{ borderColor: appColor.primaryDarkColor }}>
+                                    <Image src={Top20Leader[0]?.image} alt={Top20Leader[0]?.full_name} className="w-[100px] h-[100px] rounded-full" width={100} height={100} />
+                                </div>
+                                <div className={`w-[20px] mt-[-8px] h-[20px] rounded-full flex justify-center items-center`} style={{ backgroundColor: appColor.primaryDarkColor }}>
+                                    <p className="font-bold" style={{color: "black"  }}>1</p>
                                 </div>
                             </div>
                             <div className="w-[100px]">
-                                <p className={`mt-4 font-semibold text-[12px] text-center`} style={{ fontFamily: 'Lato-Bold', color }} >
+                                <p className={`mt-1 font-semibold text-[14px] text-center truncate`} style={{ color }} >
                                     {Top20Leader[0]?.full_name}
                                 </p>
                             </div>
                         </div>
-                        <div className="flex-1 justify-center items-center">
-                            <div className={`rounded-full p-2 m-1 relative bg-${appColor.ternaryColor}`}>
-                                <Image src={Top20Leader[2]?.image} alt={Top20Leader[2]?.full_name} className="w-[42px] h-[42px] rounded-full" />
-                                <div className={`absolute bottom-[-2] left-[25%] rounded-full w-4 items-center justify-center h-4 bg-${appColor.primaryColor}`}>
-                                    <p className="font-bold text-white text-[12px]" style={{ fontFamily: 'Lato-Bold' }}>3</p>
-                                </div>
+                        <div className="flex-1 flex flex-col items-center">
+                            <div className="">
+                                <div className='w-fit border-[10px] rounded-full' style={{ borderColor: appColor.primaryColor }}>
+                                <Image src={Top20Leader[2]?.image} alt={Top20Leader[2]?.full_name} className="w-[62px] h-[62px] rounded-full" width={100} height={100} />
+                            </div>
+                            </div>
+                            <div className="w-[14px] mt-[-6px] flex flex-col items-center justify-center rounded-full h-[14px]" style={{backgroundColor: appColor.primaryColor}}>
+                                <p className="font-bold text-white text-[10px]" style={{ color: appColor.darkTextColor}}>3</p>
                             </div>
                             <div className="w-[100px]">
-                                <p className={`mt-4 font-semibold text-[12px] text-center`} style={{ fontFamily: 'Lato-Bold',  color }}>
-                                    {Top20Leader[2]?.full_name}
+                                <p className={`truncate font-semibold text-[14px] text-center`} style={{ color }}>
+                                    {Top20Leader[0]?.full_name}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <div className="flex-1 px-4">
-                        <div className="flex-row justify-between items-center mt-3 pb-2">
-                            <p className={`font-semibold text-[16px] ${color}`} style={{ fontFamily: 'Lato-Bold' }}>Top 20 overall Leaders board</p>
-                            <div className="flex-row items-center">
+                    <div className=" px-4 mt-10">
+                        <div className="flex justify-between items-center mt-3 pb-2">
+                            <p className={`font-semibold text-[18px]`} style={{ }}>Top 20 overall Leaders board</p>
+                            <div className="flex items-center">
                                 <p className={`pr-1 font-semibold`} style={{ fontFamily: 'Lato-Bold', color }}>Sort</p>
-                                        <FaSortDown className="" style={{ color: buttonColor }}/>
+                                <FaSortDown className="mt-[-4px]" style={{ color: buttonColor }}/>
                             </div>
                         </div>
-                        <div className={`p-2 rounded-md my-2 bg-${appColor.primaryDarkColor}`}>
-                            <p className={`pl-4 font-semibold ${color}`} style={{ fontFamily: 'Lato-Bold' }}>Your rank</p>
-                            <div className="flex-row items-center px-2">
-                                <p style={{ color: appColor.lightTextColor, fontFamily: 'Lato-Bold' }}>{userRank}</p>
-                                <Image src={userDetails?.image} alt={userDetails?.full_name} className="w-10 h-10 mx-3 rounded-full" />
+                            <div className={`p-2 rounded-md my-2 `} style={{ backgroundColor: appColor.primaryDarkColor }}>
+                            <h2 className={`pl-4 font-semibold`} style={{ color}}>Your rank</h2>
+                            <div className="flex items-center px-2">
+                                <h2 className='font-bold' style={{ color: appColor.primaryColor, }}>{userRank}</h2>
+                                        <Image src={userDetails?.image} alt={userDetails?.full_name} className="w-[45px] h-[45px] mx-3 rounded-full" width={100} height={100} />
                                 <div className="flex-1">
-                                    <p className={`font-semibold pb-1 text-[16px] ${color}`} style={{ fontFamily: 'Lato-Bold' }}>{userDetails?.full_name}</p>
-                                    <p className="text-[13px]" style={{ color: "black", fontFamily: 'Lato-Regular' }}>Over all Quiz</p>
+                                    <p className={`font-semibold pb-1 text-[18px]`} style={{ }}>{userDetails?.full_name}</p>
+                                    <p className="text-[13px] mt-[-8px]" style={{ color: "black", }}>Over all Quiz</p>
                                 </div>
-                                <button className={`w-[18px] justify-center items-center rounded-sm h-[18px] bg-white`}>
-                                    <FaSortDown className="" style={{ color:buttonColor }}/>
+                                <button className={`w-[18px] flex justify-center items-center rounded-sm h-[18px] bg-white`}>
+                                    <FaSortDown className="mt-[-6px]" style={{ color:buttonColor }}/>
                                 </button>
                             </div>
                         </div>
                         {Top20Leader.map((item:any, index:any) => {
                             if (item?.full_name === userDetails?.full_name) {
-                                return null; // Hide the item
+                                return null; 
                             }
                             return (
-                                <div className={`p-2 rounded-md my-2 ${item?.full_name === userDetails?.full_name && "hidden"}`} style={{ backgroundColor: containerColor }}>
-                                    <div className="flex-row items-center px-2">
-                                        <p style={{ color, fontFamily: 'Lato-Bold' }}>{index + 1}</p>
-                                        <Image src={item?.image} alt={item?.full_name} className="w-10 h-10 mx-3 rounded-full" />
+                                <div className={`p-3 rounded-md my-2 ${item?.full_name === userDetails?.full_name && ""}`} style={{ backgroundColor: containerColor }}>
+                                    <div className="flex items-center px-2">
+                                        <h2 className='font-bold' style={{ color: appColor.primaryColor,}}>{index + 1}</h2>
+                                        <Image src={item?.image} alt={item?.full_name} className="w-[45px] h-[45px] mx-3 rounded-full" width={100} height={100} />
                                         <div className="flex-1">
-                                            <p className={`font-semibold pb-1 text-[16px] ${color}`} style={{ fontFamily: 'Lato-Bold' }}>{item?.full_name}</p>
+                                            <h2 className={`font-semibold pb-1 text-[18px]`} style={{ color}}>{item?.full_name}</h2>
                                         </div>
-                                        <button className={`w-[18px] justify-center items-center rounded-sm h-[18px] bg-white`}>
-                                            {/* <AntDesign name="caretdown" size={12} color={buttonColor} /> */}
+                                        <button className={`w-[18px] flex justify-center items-center rounded-sm h-[18px] bg-white`}>
+                                            <FaSortDown className="mt-[-6px]" style={{ color: buttonColor }} />
                                         </button>
                                     </div>
                                 </div>

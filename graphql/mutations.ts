@@ -68,7 +68,7 @@ export const UPDATE_POINTS = gql`
 
 export const ADD_USER_HISTORY = gql`
  mutation MyMutation(
-    $created_at: DateTime
+    $created_at: DateTime!
     $title: String
     $user_id: ID
     $amount: Float

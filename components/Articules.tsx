@@ -1,8 +1,11 @@
 import React from 'react'
+import HeaderSettings from './settings/HeaderSettings'
 
 const Articules = () => {
   return (
-    <div>Articules</div>
+    <div>
+      <HeaderSettings title='Article'/>
+    </div>
   )
 }
 

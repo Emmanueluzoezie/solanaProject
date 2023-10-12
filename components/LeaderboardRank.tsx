@@ -12,11 +12,11 @@ import { MdArrowDropDown, MdOutlineArrowDropDown } from 'react-icons/md';
 const LeaderBoardRank = () => {
     const [userDetails, setUserDetails] = useState<any>();
     const appTheme = useSelector(selectAppTheme);
-    const userRank = useSelector(selectUserRank); // Update this line based on your project setup
+    const userRank = useSelector(selectUserRank); 
     const dispatch = useDispatch();
     const getUserInfo = useSelector(selectUserInfo);
 
-    const { data, loading, error } = useQuery(GET_ALL_USER); // Update this line based on your project setup
+    const { data, loading, error } = useQuery(GET_ALL_USER);
 
     const userInfo = data?.getUserList;
 
@@ -30,25 +30,20 @@ const LeaderBoardRank = () => {
 
     const TopFiveLeader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(0, 5);
 
+    console.log(TopFiveLeader)
+
     useEffect(() => {
         if (data && userInfo) {
             const sortedUsers = userInfo?.sort((a:any, b:any) => b.coins - a.coins);
             const currentUserIndex = sortedUsers?.findIndex((user: any) => user.full_name === getUserInfo.name);
 
-            console.log(currentUserIndex)
-
             if (currentUserIndex !== -1) {
                 const currentUser = sortedUsers[currentUserIndex];
                 setUserDetails(currentUser);
-                console.log(currentUser)
                 dispatch(setUserRank(currentUserIndex + 1));
             }
         }
     }, []);
-
-    if(userDetails){
-        console.log(userDetails)
-    }
 
     return (
         <div style={{ marginTop: '1rem' }}>
@@ -77,9 +72,9 @@ const LeaderBoardRank = () => {
                     </div>
                 </div>
             ) : (
-                <div className='pb-8'>
+                <div className='pb-20'>
                     {userDetails &&
-                                <div style={{ padding: '0.5rem', borderRadius: '4px', marginTop: '0.5rem', backgroundColor: appColor.primaryDarkColor }}>
+                                <div style={{ padding: '0.5rem', borderRadius: '4px', backgroundColor: appColor.primaryDarkColor }}>
                                     <p className='font-semibold pl-3'>
                                         Your rank
                                     </p>
@@ -96,26 +91,22 @@ const LeaderBoardRank = () => {
                                     </div>
                                 </div>}
 
-                    {TopFiveLeader.map((item:any, index:any) => {
-                        // if (item.name === userDetails?.name) {
-                        //     return null;
-                        // }
-                        return (
-                            <div className='p-3 rounded-md my-2' style={{ backgroundColor: containerColor }} key={item.id}>
+                    {TopFiveLeader.map((item:any, index:any) => (
+                        <div className={`p-3 rounded-md my-2 ${item.full_name === userDetails?.full_name  && "hidden"} `} style={{ backgroundColor: containerColor }} key={item.id}>
                                 <div className='flex items-center space-x-3'>
-                                    <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{userRank}</h1>
-                                    <Image src={userDetails.image} alt="" width={100} height={100} className="w-[45px] h-[45px] rounded-full" />
+                                    <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{index +1}</h1>
+                                    <Image src={item?.image} alt="" width={100} height={100} className="w-[45px] h-[45px] rounded-full" />
                                     <div className='flex-1'>
                                         <h1 className='font-semibold text-[18px]' style={{ color: appColor.lightTextColor, }}>
-                                            {userDetails?.full_name}
+                                            {item?.full_name}
                                         </h1>
                                         <h3 className='text-[14px] mt-[-4px]' style={{ color: "black" }}> Over all Quiz</h3>
                                     </div>
                                     <MdOutlineArrowDropDown className='text-[25px] rounded-md mt-[-16px]' style={{ color: appColor.primaryColor, backgroundColor: "white" }} />
                                 </div>
                             </div>
-                        );
-                    })}
+                        )
+                    )}
                 </div>
             )}
         </div>

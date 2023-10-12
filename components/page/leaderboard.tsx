@@ -1,17 +1,20 @@
 import { useQuery } from '@apollo/client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { appColor } from '../components/AppColor'
-import BottomNavigation from '../components/BottomNavigation'
-import LeaderBoardComponent from '../components/LeaderBoardComponent'
-import LeaderBoardHeader from '../components/LeaderBoardHeader'
-import LoadingAppComponent from '../components/LoadingAppComponent'
-import { GET_USER_BY_EMAIL } from '../graphql/queries'
-import { selectAppTheme, setCurrentScreen } from '../slice/AppSlices'
-import { selectUserInfo } from '../slice/userSlice'
+import { GET_USER_BY_EMAIL } from '../../graphql/queries'
+import { selectAppTheme, selectIsUserLogin } from '../../slice/AppSlices'
+import { selectUserInfo } from '../../slice/userSlice'
+import { appColor } from '../AppColor'
+import BottomNavigation from '../BottomNavigation'
+import LeaderBoardComponent from '../LeaderBoardComponent'
+import LeaderBoardHeader from '../LeaderBoardHeader'
+import LoadingAppComponent from '../LoadingAppComponent'
+
+const clientId = process.env.NEXT_PUBLIC_SWEB3AUTH_CLIENT_ID
 
 const LeaderBoard = () => {
   const appTheme = useSelector(selectAppTheme)
+  const isUserLogin = useSelector(selectIsUserLogin)
   const getUserInfo = useSelector(selectUserInfo)
   const dispatch = useDispatch()
 
@@ -20,6 +23,8 @@ const LeaderBoard = () => {
       email: getUserInfo?.email
     }
   })
+
+  console.log("getUserInfo: ",getUserInfo)
 
   const userInfo = data?.getUserByEmail[0]
 
@@ -41,7 +46,7 @@ const LeaderBoard = () => {
         :
         error ?
           <div className='pt-10  px-3'>
-            <h2 style={{ color,}} className="text-[16px] text-center">Oops! An error occur in our end. Check your internet connection and try again</h2>
+            <h2 style={{ color, }} className="text-[16px] text-center">Oops! An error occur in our end. Check your internet connection and try again</h2>
             <div className='flex justify-center'>
               <button className='justify-center items-center px-4 mt-6 py-2 rounded-md' style={{ backgroundColor: borderColor }} onClick={() => { }}>Click to reload</button>
             </div>

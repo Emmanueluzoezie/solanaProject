@@ -25,42 +25,42 @@ const LinkToQuiz = () => {
           <div className="p-4" >
               <div className='border-l-4 px-2 my-6 py-4 flex items-center rounded-md cursor-pointer' style={{ borderColor: buttonColor, backgroundColor: containerColor }} onClick={() => dispatch(setCurrentQuizScreen("daily_quiz"))}>
                 <div className='flex-1'>
-                    <h2 className='text-[18px]'>Daily Quiz</h2>
+                    <h2 className='text-[18px]' style={{color: textColor}}>Daily Quiz</h2>
                     <span className='text-[12px]' style={{color: textColor}}>Daily Quiz</span>
                 </div>
                 <MdNotifications style={{color: buttonColor}} className="text-[23px]" />
             </div>
               <div className='border-l-4 px-2 my-6 py-4 flex items-center rounded-md cursor-pointer' style={{ borderColor: buttonColor, backgroundColor: containerColor }} onClick={() => dispatch(setCurrentQuizScreen("saving_quiz"))}>
                 <div className='flex-1'>
-                    <h2 className='text-[18px]'>Saving Quiz</h2>
+                    <h2 className='text-[18px]' style={{color: textColor}}>Saving Quiz</h2>
                     <span className='text-[12px]' style={{color: textColor}}>Daily Quiz</span>
                 </div>
                 <MdNotifications onClick={() => dispatch(setCurrentQuizScreen(""))} style={{ color: buttonColor }} className="text-[23px]" />
             </div>
               <div className='border-l-4 px-2 my-6 py-4 flex items-center rounded-md cursor-pointer' style={{ borderColor: buttonColor, backgroundColor: containerColor }} onClick={() => dispatch(setCurrentQuizScreen("budget_quiz"))}>
                 <div className='flex-1'>
-                    <h2 className='text-[18px]'>Budget Quiz</h2>
+                    <h2 className='text-[18px]' style={{color: textColor}}>Budget Quiz</h2>
                     <span className='text-[12px]' style={{color: textColor}}>Daily Quiz</span>
                 </div>
                 <MdNotifications style={{ color: buttonColor }} className="text-[23px]" />
             </div>
             <div className='border-l-4 px-2 my-6 py-4 flex items-center rounded-md cursor-pointer' style={{ borderColor: buttonColor, backgroundColor: containerColor }} onClick={() => dispatch(setCurrentQuizScreen(""))}>
                 <div className='flex-1'>
-                    <h2 className='text-[18px]'>Investment Quiz</h2>
+                    <h2 className='text-[18px]' style={{color: textColor}}>Investment Quiz</h2>
                     <span className='text-[12px]' style={{color: textColor}}>Daily Quiz</span>
                 </div>
                 <MdNotifications style={{ color: buttonColor }} className="text-[23px]" />
             </div>
             <div className='border-l-4 px-2 my-6 py-4 flex items-center rounded-md cursor-pointer' style={{ borderColor: buttonColor, backgroundColor: containerColor }} onClick={() => dispatch(setCurrentQuizScreen(""))}>
                 <div className='flex-1'>
-                    <h2 className='text-[18px]'>Friends Quiz</h2>
+                    <h2 className='text-[18px]' style={{color: textColor}}>Friends Quiz</h2>
                     <span className='text-[12px]' style={{color: textColor}}>Daily Quiz</span>
                 </div>
                 <MdNotifications style={{ color: buttonColor }} className="text-[23px]" />
             </div>
             <div className='border-l-4 px-2 my-6 py-4 flex items-center rounded-md cursor-pointer' style={{ borderColor: buttonColor, backgroundColor: containerColor }} onClick={() => dispatch(setCurrentQuizScreen(""))}>
                 <div className='flex-1'>
-                    <h2 className='text-[18px]'>Friends Quiz</h2>
+                    <h2 className='text-[18px]' style={{color: textColor}}>Friends Quiz</h2>
                     <span className='text-[12px]' style={{color: textColor}}>Daily Quiz</span>
                 </div>
                 <MdNotifications style={{ color: buttonColor }} className="text-[23px]" />

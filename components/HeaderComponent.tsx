@@ -25,10 +25,12 @@ const HeaderComponent = ({ title }: Props) => {
     
   return (
       <div className='py-5 px-3 flex' style={{ backgroundColor: containerColor }}>
-        <MdArrowBackIosNew style={{color}} className="text-[20px]" onClick={() => router.back()}/>
+        <div className='p-2 rounded-full cursor-pointer hover:bg-gray-400  '>
+          <MdArrowBackIosNew style={{ color }} className="text-[20px] cursor-pointer" onClick={() => router.back()} />
+        </div>
 
         <div className='flex-1 flex justify-center'>
-            <h2 className='text-[18px]'>{title}</h2>
+            <h2 className='text-[20px] font-semibold' style={{color}}>{title}</h2>
         </div>
     </div>
   )
