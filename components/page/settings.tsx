@@ -33,7 +33,7 @@ const Settings = () => {
       {currentSettingScreen === "friends" &&
         <FriendList />
       }
-      <div className='' p>
+      <div className=''>
         <button>Logout</button>
       </div>
     </div>
