@@ -23,7 +23,7 @@ const Settings = () => {
   const bgColor = appTheme === "dark" ? appColor.darkBackground : appColor.lightBackground;
 
   return (
-    <div className='h-screen' style={{ backgroundColor: bgColor }}>
+    <div className='h-screen relative' style={{ backgroundColor: bgColor }}>
       {currentSettingScreen === "home_settings" &&
         <SettingsComponent />
       }
@@ -33,6 +33,9 @@ const Settings = () => {
       {currentSettingScreen === "friends" &&
         <FriendList />
       }
+      <div className='' p>
+        <button>Logout</button>
+      </div>
     </div>
   )
 }

@@ -64,6 +64,16 @@ const HomeComponent = () => {
         dispatch(setAddress(address))
     };
 
+    const sendTransaction = async () => {
+        if (!provider) {
+            console.log("provider not initialized yet");
+            return;
+        }
+        const rpc = new RPC(provider);
+        const receipt = await rpc.sendTransaction();
+        console.log(receipt);
+    };
+
     useEffect(() => {
 
         const loaded = async() => {
@@ -78,6 +88,16 @@ const HomeComponent = () => {
 
         loaded()
     }, [provider])
+
+    const getBalance = async () => {
+        if (!provider) {
+            console.log("provider not initialized yet");
+            return;
+        }
+        const rpc = new RPC(provider);
+        const balance = await rpc.getBalance();
+        console.log(balance);
+    };
 
     const containerColor = appTheme === "dark" ? appColor.darkContainerBackground : appColor.lightContainerBackground
 
@@ -97,7 +117,8 @@ const HomeComponent = () => {
                     <HomeHeader />
                     <QuizReminder />
                     <QuizChallenge />
-                    <LeaderBoardRank />
+                    {/* <LeaderBoardRank /> */}
+                        <button onClick={getBalance}>get setTransaction</button>
                 </div>
                 <BottomNavigation />
             </div>

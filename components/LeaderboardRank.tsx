@@ -28,7 +28,7 @@ const LeaderBoardRank = () => {
 
     const color = appTheme === "dark" ? appColor.darkTextColor : appColor.lightTextColor;
 
-    const TopFiveLeader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(0, 5);
+    const TopFiveLeader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(1, 5);
 
     console.log(TopFiveLeader)
 
