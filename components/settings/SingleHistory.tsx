@@ -26,12 +26,12 @@ const SingleHistory = ({item}:any) => {
             ) {
                 return 'Yesterday';
             } else {
-                return dateObject.toLocaleDateString();
+                return`on ${ dateObject.toLocaleDateString()}`
             }
         }
     }
 
-    const dat = getDate(item)
+    const dat = getDate(item.created_at)
 
     const textColor = appTheme === 'dark' ? appColor.secondaryDarkTextColor : appColor.secondaryLightTextColor;
 
@@ -42,7 +42,7 @@ const SingleHistory = ({item}:any) => {
    <div>
         <p className="text-[18px] capitalize font-semibold" style={{ color }}>
 {item.title}</p>
-        <p className="text-[13px] pt-2" style={{ color: textColor, }}>You won {item.amount} coins on {dat}</p>
+        <p className="text-[13px] pt-2" style={{ color: textColor, }}>You won {item.amount} coins {dat}</p>
    </div>
   )
 }
