@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'react-hot-toast';
 import { useSelector } from 'react-redux';
 import { selectAppTheme } from '../slice/AppSlices';
 import { appColor } from './AppColor';
@@ -20,9 +21,15 @@ const SignupWithEmail = () => {
     const buttonColor = appTheme === "dark" ? appColor.primaryDarkColor : appColor.primaryColor;
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
+        const notification = toast.loading("Getting your points...")
+
+        setTimeout(() => {
+            toast.error("Oop! An error, check your internet connection and refresh the page", { id: notification })
+        }, 3000)
         if (isValidEmail(data.email)) {
-            console.log("Valid email:", data.email);
+            toast.success("You have successfully receive 20 points.", { id: notification })
         } else {
+            toast.error("Oop! An error, check your internet connection and refresh the page", { id: notification })
             setShowError("Enter a valid email")
         }
     };

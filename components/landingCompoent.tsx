@@ -17,8 +17,8 @@ const LandingCompoent = () => {
     const bgColor = appTheme === "dark" ? appColor.darkBackground : appColor.lightBackground;
 
   return (
-    <div className='h-full'>
-      <div className=' md:py-20 h-full md:rounded-2xl hide px-4' style={{ backgroundColor: bgColor, }}>
+    <div className='h-inherit'>
+      <div className=' md:py-20 h-inherit md:rounded-2xl hide px-4' style={{ backgroundColor: bgColor, }}>
         {!showResult?
           <LandingQuestion  /> 
           :

@@ -84,7 +84,7 @@ const LandingQuestion = () => {
                   </div>
               </div>
           </div>
-          <div className='mt-14'>
+          <div className='mt-14 relative'>
               <h2>How much do you spend on it?</h2>
               <div className='flex mt-2'>
                 <div className='flex py-2 cursor-pointer px-8 rounded-md font-semibold' style={{backgroundColor: containerColor}} onClick={() => setShowCurrencies(!showCurrencies)}>
@@ -103,7 +103,7 @@ const LandingQuestion = () => {
                           </span>
                       )}
 
-                      <div className='absolute bottom-[60px] md:bottom-0 left-24 '>
+                      <div className='fixed z-20 bottom-[100px] md:bottom-0 left-24 '>
                           <input
                               type="submit"
                               placeholder='Find out'

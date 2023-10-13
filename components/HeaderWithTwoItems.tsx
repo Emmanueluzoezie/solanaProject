@@ -23,7 +23,7 @@ const HeaderWithTwoItems = ({ title }: any) => {
     return (
         <div className="flex items-center px-3 py-5 w-full" style={{ backgroundColor: containerColor }}>
             <div className='p-2 rounded-full cursor-pointer hover:bg-gray-400 '>
-            <FaAngleLeft style={{ color }} className="text-[30px]  cursor-pointer" onClick={() => dispatch(setAppScreen(previousScreen))} />
+            <FaAngleLeft style={{ color }} className="text-[25px]  cursor-pointer" onClick={() => dispatch(setAppScreen(previousScreen))} />
             </div>
             <div className="flex-1 flex justify-center">
                 <span className='text-[20px] font-semibold' style={{color}}>{title}</span>

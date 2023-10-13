@@ -24,8 +24,6 @@ const LeaderBoard = () => {
     }
   })
 
-  console.log("getUserInfo: ",getUserInfo)
-
   const userInfo = data?.getUserByEmail[0]
 
 

@@ -40,9 +40,9 @@ const SingleHistory = ({item}:any) => {
 
   return (
    <div>
-        <p className="text-[18px] capitalize font-semibold" style={{ color }}>
+        <p className="text-[18px] capitalize font-semibold" style={{ color: textColor }}>
 {item.title}</p>
-        <p className="text-[13px] pt-2" style={{ color: textColor, }}>You won {item.amount} coins {dat}</p>
+        <p className="text-[13px] pt-2 font-semibold" style={{ color: textColor, }}>You won {item.amount} coins {dat}</p>
    </div>
   )
 }

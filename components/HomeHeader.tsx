@@ -2,6 +2,7 @@
 import { useMutation, useQuery } from '@apollo/client';
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast';
 import { FaCopy } from 'react-icons/fa';
 import { MdOutlineFileCopy } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +20,7 @@ const HomeHeader = () => {
     const getUserInfo = useSelector(selectUserInfo)
     const dispatch = useDispatch()
 
+
     const [addUserToDatabase] = useMutation(ADD_USER, {
         refetchQueries: [GET_ALL_USER, "getUserList"]
     })
@@ -31,9 +33,12 @@ const HomeHeader = () => {
         }
     })
 
-    if (userError) {
-        // console.log("errors:", error)   
-        console.log("errors:", userError)
+    if (userError) { 
+        const notification = toast.loading("Loading Questions...")
+        
+        setTimeout(() => {
+            toast.error("Oop! An error, check your internet connection and refresh the page", { id: notification })
+        }, 3000)
     }
 
     const userInfo = userData?.getUserByEmail[0]

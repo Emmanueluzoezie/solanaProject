@@ -1,11 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { appColor } from './AppColor';
 import { FaCaretDown } from "react-icons/fa"
-import { selectAppTheme } from '../slice/AppSlices';
+import { selectAppTheme, setAppScreen } from '../slice/AppSlices';
 
 function QuizChallenge() {
-    const appTheme = useSelector(selectAppTheme) // You can replace this with the actual theme logic
+    const appTheme = useSelector(selectAppTheme) 
+    const dispatch = useDispatch()
+
     const bgColor = appTheme === "dark" ? appColor.darkBackground : appColor.lightBackground;
     const containerColor = appTheme === "dark" ? appColor.primaryDarkColor : appColor.primaryColor;
     const color = appTheme === "dark" ? appColor.darkTextColor : appColor.lightTextColor;
@@ -14,7 +16,7 @@ function QuizChallenge() {
     return (
         <div className={`mt-6`} style={{ backgroundColor: bgColor}}>
             <div className="flex justify-between px-2 ">
-                <h2 className={`font-semibold text-[18px]`} style={{ color: color, }}>
+                <h2 className={`font-semibold text-[16px]`} style={{ color: color, }}>
                     Quiz Challenge
                 </h2>
                 <button>
@@ -28,11 +30,11 @@ function QuizChallenge() {
             </div>
 
             <div className='flex'>
-                <div className={`px-3 py-1 justify-between rounded-lg mr-2 flex-1 relative h-[140px]`} style={{ backgroundColor: appColor.ternaryColor, }}>
-                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.lightTextColor, }}>
+                <div onClick={() => dispatch(setAppScreen("quiz"))} className={`px-3 py-1 justify-between rounded-lg mr-2 flex-1 relative h-[140px]`} style={{ backgroundColor: appColor.ternaryColor, }}>
+                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.secondaryLightTextColor, }}>
                         In Progress Quiz
                     </h2>
-                    <p className={`text-[14px] pb-2`} style={{ color: appColor.lightTextColor}}>
+                    <p className={`text-[14px] font-semibold pb-2`} style={{ color: appColor.secondaryLightTextColor}}>
                         Explore this week quiz challenge
                     </p>
                     <p className={`font-bold text-[12px] absolute bottom-2 right-2`} style={{ color: appColor.primaryColor, }}>
@@ -40,10 +42,10 @@ function QuizChallenge() {
                     </p>
                 </div>
                 <div className={`px-3 py-1 flex-1 rounded-lg mx-2 relative h-[140px]`} style={{ backgroundColor: appColor.secondaryColor }}>
-                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.lightTextColor, }}>
+                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.secondaryLightTextColor, }}>
                         Available Quiz
                     </h2>
-                    <p className={`text-[14px] pb-2`} style={{ color: appColor.lightTextColor}}>
+                    <p className={`text-[14px] font-semibold pb-2`} style={{ color: appColor.secondaryLightTextColor}}>
                         Explore this month quiz challenge
                     </p>
                     <p className={`font-bold text-[12px] absolute bottom-2 right-2`} style={{ color: appColor.primaryColor, }}>
@@ -52,11 +54,11 @@ function QuizChallenge() {
                 </div>
             </div>
             <div className='flex mt-4'>
-                <div className={`px-3 py-1 justify-between rounded-lg mr-2 flex-1 relative h-[140px]`} style={{ backgroundColor: appColor.ternaryColor, }}>
-                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.lightTextColor, }}>
+                <div onClick={() => dispatch(setAppScreen("quiz"))} className={`px-3 py-1 justify-between rounded-lg mr-2 flex-1 relative h-[140px]`} style={{ backgroundColor: appColor.ternaryColor, }}>
+                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.secondaryLightTextColor, }}>
                         In Progress Quiz
                     </h2>
-                    <p className={`text-[14px] pb-2`} style={{ color: appColor.lightTextColor}}>
+                    <p className={`text-[14px] font-semibold pb-2`} style={{ color: appColor.secondaryLightTextColor}}>
                         Explore this week quiz challenge
                     </p>
                     <p className={`font-bold text-[12px] absolute bottom-2 right-2`} style={{ color: appColor.primaryColor, }}>
@@ -64,10 +66,10 @@ function QuizChallenge() {
                     </p>
                 </div>
                 <div className={`px-3 py-1 flex-1 rounded-lg mx-2 relative h-[140px]`} style={{ backgroundColor: appColor.secondaryColor }}>
-                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.lightTextColor, }}>
+                    <h2 className={`font-semibold text-[18px] mt-2 pb-4`} style={{ color: appColor.secondaryLightTextColor, }}>
                         Available Quiz
                     </h2>
-                    <p className={`text-[14px] pb-2`} style={{ color: appColor.lightTextColor}}>
+                    <p className={`text-[14px] font-semibold pb-2`} style={{ color: appColor.secondaryLightTextColor}}>
                         Explore this month quiz challenge
                     </p>
                     <p className={`font-bold text-[12px] absolute bottom-2 right-2`} style={{ color: appColor.primaryColor, }}>

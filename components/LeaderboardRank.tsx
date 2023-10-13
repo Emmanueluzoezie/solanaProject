@@ -28,9 +28,7 @@ const LeaderBoardRank = () => {
 
     const color = appTheme === "dark" ? appColor.darkTextColor : appColor.lightTextColor;
     // const sortedUsers = [...userInfo].sort((a, b) => b.coins - a.coins);
-    const TopFiveLeader = [...userInfo]?.sort((a:any, b:any) => b.coins - a.coins).slice(1, 5);
-
-    console.log(TopFiveLeader)
+    const TopFiveLeader = userInfo&& [...userInfo]?.sort((a:any, b:any) => b.coins - a.coins).slice(1, 5);
 
     useEffect(() => {
         if (data && userInfo) {
@@ -46,9 +44,9 @@ const LeaderBoardRank = () => {
     }, []);
 
     return (
-        <div style={{ marginTop: '1rem' }}>
+        <div style={{ marginTop: '1rem' }} className=' overflow-scroll'>
             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0.5rem' }}>
-                <p className='text-[18px] font-semibold' style={{ color, }}>
+                <p className='text-[16px] font-semibold' style={{ color, }}>
                     Top 5 LeaderBoard
                 </p>
                 <button className='flex items-center'>
@@ -72,37 +70,42 @@ const LeaderBoardRank = () => {
                     </div>
                 </div>
             ) : (
-                <div className='pb-20'>
+                <div className='pb-[50px]'>
                     {userDetails &&
                                 <div style={{ padding: '0.5rem', borderRadius: '4px', backgroundColor: appColor.primaryDarkColor }}>
                                     <p className='font-semibold pl-3'>
                                         Your rank
                                     </p>
                                     <div className='flex items-center space-x-3'>
-                                        <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{userRank}</h1>
+                                        <h1 style={{ color: appColor.primaryColor, }} className="font-bold">{userRank}</h1>
                                         <Image src={userDetails.image} alt="" width={100} height={100} className="w-[45px] h-[45px] rounded-full" />
                                         <div className='flex-1'>
-                                            <h1  className='font-semibold text-[18px]' style={{ color: appColor.lightTextColor, }}>
+                                            <h1  className='font-semibold text-[16px]' style={{ color: textColor, }}>
                                                 {userDetails?.full_name}
                                             </h1>
-                                            <h3 className='text-[14px] mt-[-4px]' style={{color: "black" }}> Over all Quiz</h3>
+                                            <h3 className='text-[14px] font-semibold mt-[-4px]' style={{ color: textColor }}> Over all Quiz</h3>
                                         </div>
-                                        <MdOutlineArrowDropDown className='text-[25px] rounded-md mt-[-16px]' style={{color: appColor.primaryColor, backgroundColor: "white"}}/>
+                                        <div className='flex items-center space-x-2 mt-[-16px]'>
+                                            <h2 className='text-[12px]  font-semibold' style={{color: textColor}}>{userDetails?.coins} points</h2>
+                                            <MdOutlineArrowDropDown className='text-[25px] rounded-md ' style={{color: appColor.primaryColor, backgroundColor: "white"}}/>
+                                        </div>
                                     </div>
                                 </div>}
 
                     {TopFiveLeader.map((item:any, index:any) => (
                         <div className={`p-3 rounded-md my-2 ${item.full_name === userDetails?.full_name  && "hidden"} `} style={{ backgroundColor: containerColor }} key={item.id}>
-                                <div className='flex items-center space-x-3'>
-                                    <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{index +1}</h1>
+                            <div className='flex items-center space-x-3'>
+                                <h1 style={{ color: appColor.lightTextColor, }} className="font-bold">{index +1}</h1>
                                     <Image src={item?.image} alt="" width={100} height={100} className="w-[45px] h-[45px] rounded-full" />
                                     <div className='flex-1'>
-                                        <h1 className='font-semibold text-[18px]' style={{ color: appColor.lightTextColor, }}>
+                                    <h1 className='font-semibold text-[16px] capitalize' style={{ color: textColor, }}>
                                             {item?.full_name}
                                         </h1>
-                                        <h3 className='text-[14px] mt-[-4px]' style={{ color: "black" }}> Over all Quiz</h3>
                                     </div>
-                                    <MdOutlineArrowDropDown className='text-[25px] rounded-md mt-[-16px]' style={{ color: appColor.primaryColor, backgroundColor: "white" }} />
+                                <div className='flex items-center space-x-2 mt-[-16px]'>
+                                    <h2 className='text-[12px]  font-semibold' style={{ color: textColor }}>{item?.coins} points</h2>
+                                    <MdOutlineArrowDropDown className='text-[25px] rounded-md ' style={{ color: appColor.primaryColor, backgroundColor: "white" }} />
+                                </div>
                                 </div>
                             </div>
                         )

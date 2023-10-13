@@ -9,8 +9,9 @@ import { CHAIN_NAMESPACES } from '@web3auth/base';
 import SignUpComponent from '../components/SignUpComponent';
 import { SolanaPrivateKeyProvider } from '@web3auth/solana-provider';
 import { OpenloginAdapter } from '@web3auth/openlogin-adapter';
-import { selectIsUserLogin, setIsUserLogin } from '../slice/AppSlices';
+import { selectAppTheme, selectIsUserLogin, setIsUserLogin } from '../slice/AppSlices';
 import PageChecker from '../components/page/pageChecker';
+import { appColor } from '../components/AppColor';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -21,6 +22,7 @@ export default function Home() {
   const web3auth = useSelector(selectWeb3Auth)
   const isUserLogin = useSelector(selectIsUserLogin)
   const dispatch = useDispatch()
+  const appTheme = useSelector(selectAppTheme)
 
   useEffect(() => {
     const init = async () => {
@@ -66,6 +68,9 @@ export default function Home() {
     init();
   }, []);
 
+
+  const bgColor = appTheme === "dark" ? appColor.darkBackground : appColor.lightBackground;
+
   return (
     <>
       <Head>
@@ -74,7 +79,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <div className={inter.className}>
+      <div className={inter.className} style={{ backgroundColor: bgColor }}>
         <div className='h-screen max-w-[500px] mx-auto'>
           {isUserLogin ?
               <div>

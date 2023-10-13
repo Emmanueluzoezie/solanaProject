@@ -46,7 +46,6 @@ const ProfileComponent = () => {
 
     const getBalance = async () => {
         if (!provider) {
-            console.log("provider not initialized yet");
             return;
         }
         const rpc = new RPC(provider);
@@ -96,7 +95,7 @@ const ProfileComponent = () => {
                     </div>
 
                     <div className="pl-2 flex flex-col items-center text-center">
-                        <p className="text-[26px] pb-1 font-semibold mb-2" style={{ color }}>
+                        <p className="text-[26px] pb-1 font-semibold mb-2" style={{ color: textColor }}>
                             {userInfo?.full_name}
                         </p>
                         <div className="w-[200px] mt-[-20px] flex items-center">
@@ -135,9 +134,9 @@ const ProfileComponent = () => {
                         <div className="flex items-center flex-col justify-center px-2 pr-6">
                             <div className="flex items-center justify-center">
                                 {/* <FaCoins style={{color:appColor.secondaryColor}} className="text-[18px]"/> */}
-                                <p className="text-15px font-semibold pl-1" style={{ color }}>Bal</p>
+                                <p className="text-[15px] font-semibold pl-1" style={{ color }}>Bal</p>
                             </div>
-                            <p className="text-12px mt-2 font-semibold" style={{ color: textColor }}>{solBalance} SOL</p>
+                            <p className="text-[12px] mt-2 font-bold" style={{ color: textColor }}>{solBalance} USDT</p>
                         </div>
                     </div>
                     <HistoryLink />

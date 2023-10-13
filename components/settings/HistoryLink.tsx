@@ -85,7 +85,7 @@ const HistoryLink = () => {
                             </div>
                             <div className="history-list">
                                 {top3History.map((item:any) => (
-                                    <div className="p-4 my-3 border-l-[12px]" style={{ backgroundColor: containerColor, borderColor }}key={item.id}>
+                                    <div className="p-4 my-3 border-l-[12px] rounded-md" style={{ backgroundColor: containerColor, borderColor }}key={item.id}>
                                         <SingleHistory item={item}/>
                                     </div>
                                 ))}

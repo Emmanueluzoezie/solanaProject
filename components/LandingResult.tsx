@@ -45,7 +45,7 @@ const LandingResult = () => {
       dispatch(setNewUser(false))
     }
   return (
-    <div className='pt-10 h-full relative' style={{backgroundColor: bgColor}}>
+    <div className='pt-10 h-inherit relative' style={{backgroundColor: bgColor}}>
          <div className='h-[250px] px-3'>
               <img
                   src={randomGif}
@@ -57,23 +57,20 @@ const LandingResult = () => {
               />
          </div>
          <div className='mt-16 text-center'>
-              <h2 className='font-semibold text-[22px]' style={{ color: textColor }}>In one year you lost <span className='' style={{ color: buttonColor }}>{getCurrencyInfo.symbol}{oneYearReturn} on {userTreatItem}</span></h2>
-
+              <h2 className='font-semibold text-[20px]' style={{ color: textColor }}>In one year you lost <span className='' style={{ color: buttonColor }}>{getCurrencyInfo.symbol}{oneYearReturn} </span>on {userTreatItem}</h2>
               <h2 className='font-semibold text-[30px] mt-10' style={{ color: textColor }}>#{hashword}</h2>
          </div>
-         <div className='absolute bottom-10 w-full'>
+        <div className='flex justify-center '>
+          <div className='w-[300px] mt-[200px] p-2 rounded-md justify-center font-bold py-2rounded-md  flex items-center shadow-4xl shadow-white' style={{ backgroundColor: appColor.primaryDarkColor, color: textColor }} >
+            <FaRegCheckCircle style={{ color: "white" }} className="text-[20px] mr-4" />
+            <h2 style={{ color: appColor.primaryColor }}>You earn + 20 points</h2>
+          </div>
+          <div className='fixed bottom-10 w-[300px]  mt-[10px]'>
             <div className='space-y-4 w-full'>
-              {/* <button className='w-full font-bold border-2 py-2 rounded-md' style={{ backgroundColor: containerColor, color: buttonColor, borderColor: buttonColor }} >Find out</button> */}
-                  <button className='w-full font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: color }} onClick={handleNewClient}>Find out</button>
+              <button className='w-full font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: color }} onClick={handleNewClient}>Find out</button>
             </div>
-              <div className='w-full flex mt-20  justify-center' >
-                  <div className='w-[300px] p-2 rounded-md justify-center font-bold py-2rounded-md  flex items-center shadow-4xl shadow-white' style={{ backgroundColor: appColor.primaryDarkColor, color: textColor }} >
-                      <FaRegCheckCircle style={{ color: "white" }} className="text-[20px] mr-4" />
-                      <h2 style={{ color: appColor.primaryColor }}>You earn + 20 points</h2>
-                  </div>
-              </div>
-
-         </div>
+          </div>
+        </div>
     </div>
   )
 }

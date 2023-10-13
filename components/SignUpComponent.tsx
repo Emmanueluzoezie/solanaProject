@@ -11,6 +11,7 @@ import { GET_ALL_USER } from '../graphql/queries';
 import Image from 'next/image';
 import SignupWithEmail from './SignupWithEmail';
 import LandingCompoent from './landingCompoent';
+import { toast } from 'react-hot-toast';
 // import "../assets/google.png"
 
 const scheme = 'solana-hack:';
@@ -32,8 +33,9 @@ const SignUpComponent = () => {
     const textColor = appTheme === "dark" ? appColor.secondaryDarkTextColor : appColor.secondaryLightTextColor;
 
     const login = async (provider:string) => {
+        const notification = toast.loading("Signing in..")
         if (!web3auth) {
-            console.log("web3auth not initialized yet");
+            toast.error("Opp! An error occur in our end, try using another browser.")
             return;
         }
         try {
@@ -43,14 +45,14 @@ const SignUpComponent = () => {
             });
             dispatch(setProvider(web3authProvider))
             dispatch(setIsUserLogin(true))
+            toast.success("You have successfully registered...")
         } catch (error) {
-            console.error("Login failed with OpenLogin", error);
+            toast.error("Opp! An error occur in our end, try using another browser.")
         }
     };
 
     const logout = async () => {
         if (!web3auth) {
-            console.log("web3auth not initialized yet");
             return;
         }
         await web3auth.logout();

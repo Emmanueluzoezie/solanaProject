@@ -26,7 +26,6 @@ const Settings = () => {
 
   const logout = async () => {
     if (!web3auth) {
-      console.log("web3auth not initialized yet");
       return;
     }
     await web3auth.logout();

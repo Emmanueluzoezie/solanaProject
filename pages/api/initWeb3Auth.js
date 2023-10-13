@@ -10,7 +10,6 @@ const clientId = process.env.NEXT_PUBLIC_SWEB3AUTH_CLIENT_ID
 
 export default async function handler(req,res) {
     const dispatch = useDispatch();
-    console.log(clientId)
 
     try {
         const chainConfig = {

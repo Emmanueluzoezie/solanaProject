@@ -31,12 +31,15 @@ const Tools = () => {
       { }
       {currentToolScreen === "home_view" &&
         <div className='h-screen' style={{ background: bgColor }}>
-          <HeaderWithTwoItems title="Tools" />
-          <ToolsComponent />
+          <div className="flex justify-center items-center px-3 py-5 w-full" style={{ backgroundColor: containerColor }}>
+              <span className='text-[20px] font-semibold' style={{ color }}>Tools</span>
+          </div>
+          <h2 style={{color}} className="px-3 mt-10">We are currently working on this page. please check back later</h2>
+          {/* <ToolsComponent /> */}
           <BottomNavigation />
         </div>
       }
-      {currentToolScreen === "calculators" &&
+      {/* {currentToolScreen === "calculators" &&
         <CalculatorsComponent />
       }
       {currentToolScreen === "articles" &&
@@ -44,7 +47,7 @@ const Tools = () => {
       }
       {currentToolScreen === "point_conversion" &&
         <PointConversion />
-      }
+      } */}
     </div>
 
   )
