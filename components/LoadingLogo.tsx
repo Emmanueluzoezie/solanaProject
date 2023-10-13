@@ -25,7 +25,7 @@ const LoadingLogo = () => {
         <div className='h-full shadow-2xl rounded-2xl flex justify-center items-center' style={{backgroundColor: bgColor}}>
             <div className='flex flex-col items-center relative'>
                 <Image
-                    src={require("../assets/logoimage.png")}
+                    src={require("../assets/finsmatlogo.png")}
                     className={`w-[150px] h-[150px] animate-pulse ${stopSpin ? '' : 'animate-spin'}`}
                     alt="Logo"
                     width={30}

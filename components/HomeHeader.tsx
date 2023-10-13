@@ -154,7 +154,7 @@ const HomeHeader = () => {
                               <Image src={userInfo?.image} className="rounded-full" width={40} height={40} alt="User" />
                           </div>
                           <div className="pl-1 w-[205px]">
-                              <p className="text-[16px] truncate font-semibold" style={{ color: textColor, }}>
+                              <p className="text-[16px] capitalize truncate font-semibold" style={{ color: textColor, }}>
                                   {userInfo?.full_name}
                               </p>
                               <div className="flex w-[135px] mt-[-10px] items-center">
@@ -165,7 +165,7 @@ const HomeHeader = () => {
                               </div>
                           </div>
                       </div>
-                      <div className="flex  justify-between w-[100px] border-black">
+                      <div className="flex  justify-between w-[140px] border-black">
                           <div className=" flex flex-col items-center">
                               <Image src={require("../assets/investor.png")} alt="Investor" className="w-[18px] h-[18px]" />
                               <p className="pl-1 text-[14px] font-bold capitalize" style={{ color: textColor, }}>
@@ -175,7 +175,7 @@ const HomeHeader = () => {
                           <div className="flex flex-col  items-center pl-2">
                               <Image src={require("../assets/coins.png")} alt="Investor" className="w-[18px] h-[18px]" />
                               <p className="pl-1 text-[14px] font-bold" style={{ color: textColor,  }}>
-                                  {userInfo?.coins}
+                                  {userInfo?.coins}  points
                               </p>
                           </div>
                       </div>

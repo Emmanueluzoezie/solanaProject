@@ -16,27 +16,15 @@ const LandingCompoent = () => {
 
     const bgColor = appTheme === "dark" ? appColor.darkBackground : appColor.lightBackground;
 
-    useEffect(() => {
-        setLoading(true)
-
-        setTimeout(() => {
-            setLoading(false)
-        },4000)
-    }, [])
-
   return (
     <div className='h-full'>
-        {loading?
-            <LoadingLogo />
-            :
-          <div className=' md:py-20 h-full md:rounded-2xl hide px-4' style={{ backgroundColor: bgColor, }}>
-              {!showResult?
-                <LandingQuestion  /> 
-                :
-                <LandingResult />
-              }
-          </div>
-        }
+      <div className=' md:py-20 h-full md:rounded-2xl hide px-4' style={{ backgroundColor: bgColor, }}>
+        {!showResult?
+          <LandingQuestion  /> 
+          :
+          <LandingResult />
+          }
+      </div>
     </div>
   )
 }

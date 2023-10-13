@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAppTheme } from '../slice/AppSlices';
+import { selectAppTheme, setNewUser } from '../slice/AppSlices';
 import { gifImage, hashTagWord } from '../utilies/WelcomeArrayItems';
 import { appColor } from './AppColor';
 import { FaRegCheckCircle } from "react-icons/fa"
@@ -40,6 +40,10 @@ const LandingResult = () => {
 
     const randomGif = getRandomGif();
     const hashword = getHashTag();
+
+    const handleNewClient = () => {
+      dispatch(setNewUser(false))
+    }
   return (
     <div className='pt-10 h-full relative' style={{backgroundColor: bgColor}}>
          <div className='h-[250px] px-3'>
@@ -59,8 +63,8 @@ const LandingResult = () => {
          </div>
          <div className='absolute bottom-10 w-full'>
             <div className='space-y-4 w-full'>
-              <button className='w-full font-bold border-2 py-2 rounded-md' style={{ backgroundColor: containerColor, color: buttonColor, borderColor: buttonColor }} >Find out</button>
-                  <button className='w-full font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: color }} >Find out</button>
+              {/* <button className='w-full font-bold border-2 py-2 rounded-md' style={{ backgroundColor: containerColor, color: buttonColor, borderColor: buttonColor }} >Find out</button> */}
+                  <button className='w-full font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: color }} onClick={handleNewClient}>Find out</button>
             </div>
               <div className='w-full flex mt-20  justify-center' >
                   <div className='w-[300px] p-2 rounded-md justify-center font-bold py-2rounded-md  flex items-center shadow-4xl shadow-white' style={{ backgroundColor: appColor.primaryDarkColor, color: textColor }} >

@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useQuery } from '@apollo/client';
 import { appColor } from '../AppColor';
 import HistoryLink from './HistoryLink';
 import { FaCoins, FaCopy } from 'react-icons/fa';
-import { selectUserInfo, selectUserRank } from '../../slice/userSlice';
+import { selectBalance, selectProvider, selectUserInfo, selectUserRank, setBalance } from '../../slice/userSlice';
 import { selectAppTheme } from '../../slice/AppSlices';
 import { GET_USER_BY_EMAIL } from '../../graphql/queries';
 import LoadingAppComponent from '../LoadingAppComponent';
 import { MdPerson2 } from 'react-icons/md';
 import Image from 'next/image';
 import HeaderSettings from './HeaderSettings';
+import RPC from "../../solanaRPC";
 
 const ProfileComponent = () => {
-    const [solanaAddress, setSolanaAddress] = useState('');
+    const provider = useSelector(selectProvider)
     const [copyMessage, setCopyMessage] = useState('');
     const getUserInfo = useSelector(selectUserInfo);
     const userRank = useSelector(selectUserRank);
     const appTheme = useSelector(selectAppTheme);
+    const dispatch = useDispatch()
+    const getUserBalance = useSelector(selectBalance)
 
     const { data, loading, error } = useQuery(GET_USER_BY_EMAIL, {
         variables: {
@@ -40,6 +43,22 @@ const ProfileComponent = () => {
             setCopyMessage('');
         }, 2000);
     };
+
+    const getBalance = async () => {
+        if (!provider) {
+            console.log("provider not initialized yet");
+            return;
+        }
+        const rpc = new RPC(provider);
+        const balance = await rpc.getBalance();
+        dispatch(setBalance(balance))
+    };
+ 
+    const solBalance = getUserBalance / 1000000000;
+
+    useEffect(() => {
+        getBalance()
+    },[])
 
     const buttonColor = appTheme === 'dark' ? appColor.primaryDarkColor : appColor.primaryColor;
 
@@ -84,7 +103,7 @@ const ProfileComponent = () => {
                             </p>
                             <FaCopy onClick={copyToClipboard} className="text-[28px] cursor-pointer" style={{ color: buttonColor }} />
                         </div>
-                                <p className="text-[16px] font-semibold mt-[-10px] py-1" style={{ color: secondColor }}>
+                        <p className="text-[16px] font-semibold mt-[-10px] py-1" style={{ color: secondColor }}>
                             {userInfo?.email}
                         </p>
                     </div>
@@ -104,20 +123,20 @@ const ProfileComponent = () => {
                             </div>
                             <p className="text-12px mt-2 font-semibold capitalize" style={{ color: textColor }}>{userInfo?.badge}</p>
                         </div>
-                        <div className=" py-3 flex items-center justify-center flex-1 flex-col" style={{ borderColor: color }}>
+                        <div className=" py-3 flex items-center justify-center border-r-[2px] flex-1 flex-col" style={{ borderColor: color }}>
                             <div className="flex items-center justify-center">
                                         <Image src={require('../../assets/coins.png')} alt="Coins" style={{ width: '15px', height: '12px' }} width={100} height={100} />
                                 <p className="text-15px font-semibold pl-1" style={{ color }}>Points</p>
                             </div>
                             <p className="text-12px mt-2 font-semibold capitalize" style={{ color: textColor }}>{userInfo?.coins}</p>
                         </div>
-                        {/* <div className="flex items-center justify-center">
+                        <div className="flex items-center flex-col justify-center px-2 pr-6">
                             <div className="flex items-center justify-center">
-                                <FaCoins style={{color:appColor.secondaryColor}} className="text-[18px]"/>
-                                <p className="text-15px font-semibold pl-1" style={{ color }}>Token</p>
+                                {/* <FaCoins style={{color:appColor.secondaryColor}} className="text-[18px]"/> */}
+                                <p className="text-15px font-semibold pl-1" style={{ color }}>Bal</p>
                             </div>
-                            <p className="text-12px mt-2 font-semibold" style={{ color: textColor }}>{userInfo?.token}</p>
-                        </div> */}
+                            <p className="text-12px mt-2 font-semibold" style={{ color: textColor }}>{solBalance} SOL</p>
+                        </div>
                     </div>
                     <HistoryLink />
                 </div>

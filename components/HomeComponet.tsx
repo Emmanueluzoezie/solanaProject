@@ -117,12 +117,12 @@ const HomeComponent = () => {
                     <HomeHeader />
                     <QuizReminder />
                     <QuizChallenge />
-                    {/* <LeaderBoardRank /> */}
-                        <button onClick={getBalance}>get setTransaction</button>
+                    <LeaderBoardRank />
+                        {/* <button onClick={getBalance}>get setTransaction</button> */}
                 </div>
                 <BottomNavigation />
             </div>
-            }
+            }z
         </div>
     )
 }

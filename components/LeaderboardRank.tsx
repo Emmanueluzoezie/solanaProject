@@ -27,14 +27,14 @@ const LeaderBoardRank = () => {
     const containerColor = appTheme === "dark" ? appColor.darkContainerBackground : appColor.lightContainerBackground;
 
     const color = appTheme === "dark" ? appColor.darkTextColor : appColor.lightTextColor;
-
-    const TopFiveLeader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(1, 5);
+    // const sortedUsers = [...userInfo].sort((a, b) => b.coins - a.coins);
+    const TopFiveLeader = [...userInfo]?.sort((a:any, b:any) => b.coins - a.coins).slice(1, 5);
 
     console.log(TopFiveLeader)
 
     useEffect(() => {
         if (data && userInfo) {
-            const sortedUsers = userInfo?.sort((a:any, b:any) => b.coins - a.coins);
+            const sortedUsers = [...userInfo]?.sort((a:any, b:any) => b.coins - a.coins);
             const currentUserIndex = sortedUsers?.findIndex((user: any) => user.full_name === getUserInfo.name);
 
             if (currentUserIndex !== -1) {

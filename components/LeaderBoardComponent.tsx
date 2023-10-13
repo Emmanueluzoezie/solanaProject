@@ -127,12 +127,14 @@ const LeaderBoardComponent = () => {
                                 <h2 className='font-bold' style={{ color: appColor.primaryColor, }}>{userRank}</h2>
                                         <Image src={userDetails?.image} alt={userDetails?.full_name} className="w-[45px] h-[45px] mx-3 rounded-full" width={100} height={100} />
                                 <div className="flex-1">
-                                    <p className={`font-semibold pb-1 text-[18px]`} style={{ }}>{userDetails?.full_name}</p>
+                                    <p className={`font-semibold  capitalize pb-1 text-[18px]`} style={{ }}>{userDetails?.full_name}</p>
                                     <p className="text-[13px] mt-[-8px]" style={{ color: "black", }}>Over all Quiz</p>
                                 </div>
-                                <button className={`w-[18px] flex justify-center items-center rounded-sm h-[18px] bg-white`}>
-                                    <FaSortDown className="mt-[-6px]" style={{ color:buttonColor }}/>
-                                </button>
+                                <div className='flex items-center'>
+                                    <h2 className='font-semibold text-[17px]' style={{color:appColor.primaryColor}}>{userDetails?.coins} Points</h2>
+                                    <button className={`w-[18px] ml-3 flex justify-center items-center rounded-sm h-[18px] bg-white`}> <FaSortDown className="mt-[-6px]" style={{ color: buttonColor }} />
+                                            </button>
+                                </div>
                             </div>
                         </div>
                         {Top20Leader.map((item:any, index:any) => {
@@ -145,11 +147,13 @@ const LeaderBoardComponent = () => {
                                         <h2 className='font-bold' style={{ color: appColor.primaryColor,}}>{index + 1}</h2>
                                         <Image src={item?.image} alt={item?.full_name} className="w-[45px] h-[45px] mx-3 rounded-full" width={100} height={100} />
                                         <div className="flex-1">
-                                            <h2 className={`font-semibold pb-1 text-[18px]`} style={{ color}}>{item?.full_name}</h2>
+                                            <h2 className={`font-semibold pb-1 caoitalize text-[18px]`} style={{ color}}>{item?.full_name}</h2>
                                         </div>
-                                        <button className={`w-[18px] flex justify-center items-center rounded-sm h-[18px] bg-white`}>
-                                            <FaSortDown className="mt-[-6px]" style={{ color: buttonColor }} />
-                                        </button>
+                                        <div className='flex items-center'>
+                                            <h2 className='font-semibold text-[17px]'>{item?.coins} Points</h2>
+                                            <button className={`w-[18px] ml-3 flex justify-center items-center rounded-sm h-[18px] bg-white`}> <FaSortDown className="mt-[-6px]" style={{ color: buttonColor }} />
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             );
