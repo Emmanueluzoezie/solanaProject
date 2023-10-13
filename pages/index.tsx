@@ -12,7 +12,7 @@ import { OpenloginAdapter } from '@web3auth/openlogin-adapter';
 import { selectIsUserLogin, setIsUserLogin } from '../slice/AppSlices';
 import PageChecker from '../components/page/pageChecker';
 
-const rpc_id = process.env.NEXT_PUBLIC_RPS_ID
+
 const inter = Inter({ subsets: ['latin'] })
 const clientId = process.env.NEXT_PUBLIC_SWEB3AUTH_CLIENT_ID
 
@@ -28,7 +28,7 @@ export default function Home() {
         const chainConfig = {
           chainNamespace: CHAIN_NAMESPACES.SOLANA,
           chainId: "0x1", // Please use 0x1 for Mainnet, 0x2 for Testnet, 0x3 for Devnet
-          rpcTarget: `https://rpc.helius.xyz/?api-key=${rpc_id}`,
+          rpcTarget: `https://rpc.helius.xyz/?api-key=${process.env.NEXT_PUBLIC_RPS_ID}`,
           displayName: "Solana Mainnet",
           blockExplorer: "https://explorer.solana.com",
           ticker: "SOL",

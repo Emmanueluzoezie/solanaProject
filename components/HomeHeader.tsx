@@ -149,11 +149,11 @@ const HomeHeader = () => {
             :
               <div >
                   <div className="flex items-center justify-between py-3"  >
-                      <div className='flex items-center'>
+                      <div className='flex items-center '>
                           <div className={`rounded-full w-[50px] h-[50px] `}>
                               <Image src={userInfo?.image} className="rounded-full" width={40} height={40} alt="User" />
                           </div>
-                          <div className="pl-1 w-[205px]">
+                          <div className="pl-1 w-[190px]">
                               <p className="text-[16px] capitalize truncate font-semibold" style={{ color: textColor, }}>
                                   {userInfo?.full_name}
                               </p>
@@ -165,17 +165,23 @@ const HomeHeader = () => {
                               </div>
                           </div>
                       </div>
-                      <div className="flex  justify-between w-[140px] border-black">
+                      <div className="flex   justify-between w-[200px] border-black">
                           <div className=" flex flex-col items-center">
-                              <Image src={require("../assets/investor.png")} alt="Investor" className="w-[18px] h-[18px]" />
-                              <p className="pl-1 text-[14px] font-bold capitalize" style={{ color: textColor, }}>
+                              <Image src={require("../assets/investor.png")} alt="Investor" className="w-[16px] h-[18px]" />
+                              <p className="text-[12px] font-bold capitalize" style={{ color: textColor, }}>
                                   {userInfo?.badge}
                               </p>
                           </div>
                           <div className="flex flex-col  items-center pl-2">
-                              <Image src={require("../assets/coins.png")} alt="Investor" className="w-[18px] h-[18px]" />
-                              <p className="pl-1 text-[14px] font-bold" style={{ color: textColor,  }}>
-                                  {userInfo?.coins}  points
+                              <Image src={require("../assets/coins.png")} alt="Investor" className="w-[16px] h-[18px]" />
+                              <p className=" text-[11px] font-bold" style={{ color: textColor,  }}>
+                                  {userInfo?.coins} points
+                              </p>
+                          </div>
+                          <div className="flex flex-col  items-center pl-2">
+                              <p className=" text-[12px] font-bold" style={{ color: textColor,  }}>Bal</p>
+                              <p className=" text-[12px] font-bold" style={{ color: textColor,  }}>
+                                  {userInfo?.token}
                               </p>
                           </div>
                       </div>

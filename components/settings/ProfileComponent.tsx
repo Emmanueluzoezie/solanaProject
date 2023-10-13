@@ -70,7 +70,9 @@ const ProfileComponent = () => {
     return (
         <div className="">
             {loading ? (
-                <LoadingAppComponent />
+                <div className='flex justify-center items-center'>
+                    <LoadingAppComponent />
+                </div>
             ) : error ? (
                 <div className="flex justify-center items-center">
                     <p className="text-16px" style={{ color }}>
