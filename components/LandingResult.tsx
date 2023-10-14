@@ -48,7 +48,7 @@ const LandingResult = () => {
     <div className='pt-10 h-inherit relative' style={{backgroundColor: bgColor}}>
          <div className='h-[250px] px-3'>
               <img
-                  src={randomGif}
+          src="https://media4.giphy.com/media/j0A8PCnlz49qt1BWCD/giphy.gif"
                   className='w-[100%] h-[100%]'
                   alt="Logo"
                   width={30}
@@ -67,7 +67,7 @@ const LandingResult = () => {
           </div>
           <div className='fixed bottom-10 w-[300px]  mt-[10px]'>
             <div className='space-y-4 w-full'>
-              <button className='w-full font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: color }} onClick={handleNewClient}>Find out</button>
+              <button className='w-full font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: color }} onClick={handleNewClient}>Claim your point</button>
             </div>
           </div>
         </div>
