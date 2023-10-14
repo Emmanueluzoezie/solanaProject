@@ -40,14 +40,14 @@ const SignUpComponent = () => {
         }
         try {
             const web3authProvider = await web3auth.connectTo(WALLET_ADAPTERS.OPENLOGIN, {
-                mfaLevel: "none", // Pass on the mfa level of your choice: default, optional, mandatory, none
-                loginProvider: provider, // Pass on the login provider of your choice: google, facebook, discord, twitch, twitter, github, linkedin, apple, etc.
+                mfaLevel: "none", 
+                loginProvider: provider, 
             });
             dispatch(setProvider(web3authProvider))
             dispatch(setIsUserLogin(true))
-            toast.success("You have successfully registered...")
+            toast.success("You have successfully registered...", { id: notification })
         } catch (error) {
-            toast.error("Opp! An error occur in our end, try using another browser.")
+            toast.error("Opp! An error occur in our end, try using another browser.", {id:  notification})
         }
     };
 
