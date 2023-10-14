@@ -103,11 +103,12 @@ const LandingQuestion = () => {
                           </span>
                       )}
 
-                      <div className='fixed z-20 bottom-[100px] md:bottom-0 left-24 '>
+                      <div className='fixed  text-center z-20 bottom-[100px] md:bottom-0 left-24 '>
                           <input
-                              type="submit"
+                          name='Find out'
+                              type=""
                               placeholder='Find out'
-                              className='w-[270px] font-semibold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: textColor }}
+                              className='w-[270px] text-[20px] text-center font-bold py-2 rounded-md' style={{ backgroundColor: buttonColor, color: textColor }}
                           />
                       </div>
                   </form>
