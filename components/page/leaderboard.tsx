@@ -10,13 +10,9 @@ import LeaderBoardComponent from '../LeaderBoardComponent'
 import LeaderBoardHeader from '../LeaderBoardHeader'
 import LoadingAppComponent from '../LoadingAppComponent'
 
-const clientId = process.env.NEXT_PUBLIC_SWEB3AUTH_CLIENT_ID
-
 const LeaderBoard = () => {
   const appTheme = useSelector(selectAppTheme)
-  const isUserLogin = useSelector(selectIsUserLogin)
   const getUserInfo = useSelector(selectUserInfo)
-  const dispatch = useDispatch()
 
   const { data, loading, error } = useQuery(GET_USER_BY_EMAIL, {
     variables: {

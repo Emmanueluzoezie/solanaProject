@@ -18,7 +18,7 @@ const PageChecker = () => {
           {getPage === "quiz" && <Quiz />}
           {getPage === "settings" && <Settings />}
           {getPage === "tools" && <Tools />}
-          {getPage === "leaderboard" && <LeaderBoard />}
+        {getPage === "leaderboard" && <LeaderBoard />}
     </div>
   )
 }

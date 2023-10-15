@@ -21,11 +21,11 @@ const LeaderBoardComponent = () => {
 
     const userInfo = data?.getUserList;
 
-    const Top20Leader = userInfo?.sort((a:any, b:any) => b.coins - a.coins).slice(0, 20);
+    const sortedUsers = [...userInfo]?.sort((a: any, b: any) => b.coins - a.coins);
+    const Top20Leader = sortedUsers?.slice(0, 20);
 
     useEffect(() => {
-        const sortedUsers = userInfo.sort((a: any, b: any) => b.coins - a.coins);
-
+        const sortedUsers = [...userInfo]?.sort((a: any, b: any) => b.coins - a.coins);
         const currentUserIndex = sortedUsers.findIndex((user:any) => user.full_name === getUserInfo.name);
 
         if (currentUserIndex !== -1) {
